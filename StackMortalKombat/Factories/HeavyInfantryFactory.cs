@@ -1,4 +1,5 @@
 ﻿using StackMortalKombat.Interfaces;
+using StackMortalKombat.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace StackMortalKombat.Factories
     {
         public override IUnit CreateUnit()
         {
-            throw new NotImplementedException();
+            return new HeavyInfantry();
         }
     }
 }
