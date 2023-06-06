@@ -13,5 +13,7 @@ public interface IUnit
     public uint Cost { get; }
 
     public void DamageTaken(uint damageTaken);
-/*    public bool IsAbility(); */
+    /*    public bool IsAbility(); */
+
+    public void TakeTurn();
 }
