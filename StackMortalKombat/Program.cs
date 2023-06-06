@@ -1,2 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+int n = -3;
+Console.WriteLine(Convert.ToUInt32(n));
+
+
