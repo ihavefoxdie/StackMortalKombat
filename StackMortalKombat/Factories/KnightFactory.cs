@@ -1,5 +1,5 @@
 ﻿using StackMortalKombat.Interfaces;
-using StackMortalKombat.SpecialUnits;
+using StackMortalKombat.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +8,15 @@ using System.Threading.Tasks;
 
 namespace StackMortalKombat.Factories
 {
-    internal class HealerFactory : UnitFactory
+    internal class KnightFactory : UnitFactory
     {
-        private IUnit _unit;
-
-        public HealerFactory(IUnit unit)
+        public KnightFactory()
         {
-            _unit = unit;
         }
 
         public override IUnit CreateUnit()
         {
-            return new Healer(_unit);
+            return new Knight();
         }
     }
 }

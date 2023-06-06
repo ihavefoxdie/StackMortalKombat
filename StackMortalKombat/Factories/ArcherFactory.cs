@@ -1,19 +1,20 @@
 ﻿using StackMortalKombat.Interfaces;
-using StackMortalKombat.Units;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StackMortalKombat.SpecialUnits;
 
 namespace StackMortalKombat.Factories
 {
     internal class ArcherFactory : UnitFactory
     {
+        private IUnit _unit;
+        public ArcherFactory(IUnit unit)
+        {
+            _unit = unit;
+        }
+
+
         public override IUnit CreateUnit()
         {
-            throw new NotImplementedException();    
-            
+            return new Archer(_unit);
         }
     }
 }

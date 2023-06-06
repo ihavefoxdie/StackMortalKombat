@@ -1,4 +1,5 @@
 ﻿using StackMortalKombat.Interfaces;
+using StackMortalKombat.SpecialUnits;
 
 namespace StackMortalKombat.Factories
 {
@@ -9,15 +10,9 @@ namespace StackMortalKombat.Factories
         {
             _unit = unit;
         }
-
         public override IUnit CreateUnit()
         {
-            
-
-
-
-            throw new NotImplementedException();
-
+           return new Witcher(_unit);
         }
     }
 }
