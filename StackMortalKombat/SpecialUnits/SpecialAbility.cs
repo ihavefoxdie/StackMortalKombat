@@ -1,4 +1,6 @@
-﻿namespace StackMortalKombat.Interfaces;
+﻿using StackMortalKombat.Interfaces;
+
+namespace StackMortalKombat.SpecialUnits;
 
 public abstract class SpecialAbility : IUnit
 {
