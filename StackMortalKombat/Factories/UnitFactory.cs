@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StackMortalKombat.Units;
+﻿using StackMortalKombat.Units;
 
-namespace StackMortalKombat.Factories
+namespace StackMortalKombat.Factories;
+
+public abstract class UnitFactory
 {
-    public abstract class UnitFactory
-    {
-        public abstract Unit CreateUnit();
-    }
+    public abstract Unit CreateUnit();
 }

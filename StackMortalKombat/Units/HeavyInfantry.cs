@@ -2,10 +2,15 @@
 
 namespace StackMortalKombat.Units;
 
-public class HeavyInfantry : Unit, IHealable
+public class HeavyInfantry : Unit, IHealable, IClone<Unit>
 {
     public HeavyInfantry(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost) : base(id, name, health, maxHP, damage, defense, cost)
     {
+    }
+
+    public Unit Clone()
+    {
+        return new HeavyInfantry(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
     }
 
     public void ReceiveHealing(uint value)

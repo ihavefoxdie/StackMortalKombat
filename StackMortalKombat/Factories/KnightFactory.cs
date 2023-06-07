@@ -1,21 +1,11 @@
 ﻿using StackMortalKombat.Units;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace StackMortalKombat.Factories
+namespace StackMortalKombat.Factories;
+
+public class KnightFactory : UnitFactory
 {
-    public class KnightFactory : UnitFactory
+    public override Unit CreateUnit()
     {
-        public KnightFactory()
-        {
-        }
-
-        public override Unit CreateUnit()
-        {
-            return new Knight(3, "Knight", 40, 20, 15, 10, 2);
-        }
+        return new Knight(3, "Knight", 10, 10, 3, 3, 10 + 3 + 3);
     }
 }

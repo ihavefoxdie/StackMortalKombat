@@ -14,7 +14,7 @@ namespace StackMortalKombat.Factories
 
         public override Unit CreateUnit()
         {
-           return new Witcher(_unit, 2, 3, 5);
+           return new Witcher(_unit, 2, 3, 2*(2+3));
         }
     }
 }

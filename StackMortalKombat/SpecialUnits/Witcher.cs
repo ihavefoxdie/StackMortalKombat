@@ -5,7 +5,7 @@ namespace StackMortalKombat.SpecialUnits;
 
 public class Witcher : Unit, ISpecialAbility
 {
-    public Witcher(Unit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
+    public Witcher(Unit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Witcher" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
     {
         SpecialAbilityCost = specialAbilityCost;
         SpecialAbilityStrength = specialAbilityStrength;
@@ -22,7 +22,16 @@ public class Witcher : Unit, ISpecialAbility
 
     public void CastSpecialAbility(ref List<Unit> unitsFriendly, ref List<Unit> unitsEnemies)
     {
-        unitsFriendly[new Random().Next(0, unitsEnemies.Count)].Health += SpecialAbilityStrength;
+        List<int> clonables = new List<int>();
+        for (int i = 0; i < unitsFriendly.Count; i++)
+        {
+            if (unitsFriendly[i] is IClone<Unit>)
+                clonables.Add(i);
+        }
+        if (clonables.Count > 0)
+        {
+            unitsFriendly.Add(((IClone<Unit>)unitsFriendly[clonables[new Random().Next(0, clonables.Count)]]).Clone());
+        }
     }
 
     public override void TakeTurn()
