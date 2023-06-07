@@ -1,7 +1,6 @@
 ﻿using StackMortalKombat.Factories;
-using StackMortalKombat.Units;
 using StackMortalKombat.Interfaces;
-using StackMortalKombat.SpecialUnits;
+using StackMortalKombat.Units;
 
 KnightFactory knightFactory = new();
 var unit = knightFactory.CreateUnit();
@@ -13,3 +12,6 @@ List<Unit> units = new List<Unit>();
 units.Add(((IClone<Unit>)unit).Clone());
 Console.WriteLine(units[0] is IClone<Unit>);
 Console.WriteLine(witcher is IClone<Unit>);
+
+WalkTheCityAdapter walkTheCityAdapter = new(new WalkTheCity(20, 50, 10, 0.5));
+walkTheCityAdapter.DamageTaken(100);
