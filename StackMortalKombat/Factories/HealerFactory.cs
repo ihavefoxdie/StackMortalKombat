@@ -1,25 +1,20 @@
-﻿using StackMortalKombat.Interfaces;
-using StackMortalKombat.SpecialUnits;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StackMortalKombat.SpecialUnits;
+using StackMortalKombat.Units;
 
 namespace StackMortalKombat.Factories
 {
-    internal class HealerFactory : UnitFactory
+    public class HealerFactory : UnitFactory
     {
-        private IUnit _unit;
+        private Unit _unit;
 
-        public HealerFactory(IUnit unit)
+        public HealerFactory(Unit unit)
         {
             _unit = unit;
         }
 
-        public override IUnit CreateUnit()
+        public override Unit CreateUnit()
         {
-            return new Healer(_unit);
+            return new Healer(_unit, 5, 5, 5);
         }
     }
 }

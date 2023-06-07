@@ -1,5 +1,4 @@
-﻿using StackMortalKombat.Interfaces;
-using StackMortalKombat.Units;
+﻿using StackMortalKombat.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace StackMortalKombat.Factories
 {
-    internal class KnightFactory : UnitFactory
+    public class KnightFactory : UnitFactory
     {
         public KnightFactory()
         {
         }
 
-        public override IUnit CreateUnit()
+        public override Unit CreateUnit()
         {
-            return new Knight();
+            return new Knight(3, "Knight", 40, 20, 15, 10, 2);
         }
     }
 }

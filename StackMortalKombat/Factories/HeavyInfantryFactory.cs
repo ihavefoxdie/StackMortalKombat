@@ -1,4 +1,4 @@
-﻿using StackMortalKombat.Interfaces;
+﻿using StackMortalKombat.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace StackMortalKombat.Factories
 {
-    internal class HeavyInfantryFactory : UnitFactory
+    public class HeavyInfantryFactory : UnitFactory
     {
-        public override IUnit CreateUnit()
+        public HeavyInfantryFactory()
+        {
+        }
+
+        public override Unit CreateUnit()
         {
             throw new NotImplementedException();
         }

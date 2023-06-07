@@ -1,18 +1,20 @@
-﻿using StackMortalKombat.Interfaces;
-using StackMortalKombat.SpecialUnits;
+﻿using StackMortalKombat.SpecialUnits;
+using StackMortalKombat.Units;
 
 namespace StackMortalKombat.Factories
 {
-    internal class WitcherFactory : UnitFactory
+    public class WitcherFactory : UnitFactory
     {
-        private IUnit _unit;
-        public WitcherFactory(IUnit unit)
+        private Unit _unit;
+
+        public WitcherFactory(Unit unit)
         {
             _unit = unit;
         }
-        public override IUnit CreateUnit()
+
+        public override Unit CreateUnit()
         {
-           return new Witcher(_unit);
+           return new Witcher(_unit, 2, 3, 5);
         }
     }
 }
