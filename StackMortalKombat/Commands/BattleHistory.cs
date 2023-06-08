@@ -9,7 +9,8 @@ namespace StackMortalKombat.Commands
         private AbstractCommand _command;
         private Stack<AbstractCommand> _undoCommands = new();
         private Stack<AbstractCommand> _redoCommands = new();
-        private BattleContext _battleContext;
+        public bool isGameEnded = false;
+        public BattleContext _battleContext { get; set; }
 
         public void SetCommand(AbstractCommand command)
         {
@@ -22,6 +23,8 @@ namespace StackMortalKombat.Commands
             {
                 _command.Execute();
                 _undoCommands.Push(_command);
+                if (_battleContext.army1.Count == 0 || _battleContext.army2.Count == 0)
+                    isGameEnded = true;
             }
             else
                 Debug.WriteLine("Command doesn't exist");
@@ -57,5 +60,7 @@ namespace StackMortalKombat.Commands
         {
             _battleContext = battleContext;
         }
+
+
     }
 }
