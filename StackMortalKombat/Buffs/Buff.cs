@@ -2,11 +2,11 @@
 
 namespace StackMortalKombat.Buffs;
 
-public abstract class Buff : Unit
+public abstract class Buff : AbstractUnit
 {
-    protected Unit _unit;
+    protected AbstractUnit _unit;
 
-    public Buff(Unit unit) : base(unit.Id, unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost)
+    public Buff(AbstractUnit unit) : base(unit.Id, unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost)
     {
         _unit = unit;
     }

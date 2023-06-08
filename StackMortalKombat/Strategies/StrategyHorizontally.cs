@@ -9,7 +9,7 @@ public class StrategyHorizontally : IStrategy
     {
     }
 
-    public void MakeTurn(List<Unit> army1, List<Unit> army2)
+    public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         if (army1.Last() != null && army2.Last() != null)
         {
@@ -19,21 +19,21 @@ public class StrategyHorizontally : IStrategy
         }
     }
 
-    public void UseSpecialAbility(List<Unit> army1, List<Unit> army2)
+    public void UseSpecialAbility(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         for (int i = 0; i < army1.Count; i++)
         {
             if (army1[i].IsAlive && army1[i] is ISpecialAbility special)
             {
-                List<Unit> friendlyReach = new();
-                List<Unit> enemyReach = new();
+                List<AbstractUnit> friendlyReach = new();
+                List<AbstractUnit> enemyReach = new();
                 ScanForReach(i, special.SpecialAbilityRange, friendlyReach, enemyReach, army1, army2);
                 special.CastSpecialAbility(friendlyReach, enemyReach);
             }
         }
     }
 
-    private void ScanForReach(int index, int range, List<Unit> friendlyReach, List<Unit> enemyReach, List<Unit> army1, List<Unit> army2)
+    private void ScanForReach(int index, int range, List<AbstractUnit> friendlyReach, List<AbstractUnit> enemyReach, List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         for (int i = index + 1, wentThrough = range - 1; i < army1.Count; i++, wentThrough--)
         {
@@ -56,7 +56,7 @@ public class StrategyHorizontally : IStrategy
         }
     }
 
-    /*private bool Assist(List<Unit> friendly, Unit unit, int wentThrough)
+    /*private bool Assist(List<AbstractUnit> friendly, AbstractUnit unit, int wentThrough)
     {
         friendly.Add(unit);
         if (wentThrough == 0)

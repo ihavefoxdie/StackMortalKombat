@@ -45,7 +45,7 @@ public class WalkTheCity
     public void TakeDamage(int damage)
     {
         if (_currentHealth == 0)
-            throw new Exception("Unit are death!");
+            throw new Exception("AbstractUnit are death!");
 
         if (damage < 0)
             throw new ArgumentException("Argument must be greater than zero", "damage");

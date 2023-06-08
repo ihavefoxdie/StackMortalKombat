@@ -3,13 +3,13 @@ using StackMortalKombat.Units;
 
 namespace StackMortalKombat.SpecialUnits;
 
-public class Archer : Unit, ISpecialAbility
+public class Archer : AbstractUnit, ISpecialAbility
 {
-    /*public Archer(Unit unit) : base(unit, 4, 2, "Archer", 2)
+    /*public Archer(AbstractUnit unit) : base(unit, 4, 2, "Archer", 2)
     {
     }*/
 
-    public Archer(Unit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Archer" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
+    public Archer(AbstractUnit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Archer" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
     {
         SpecialAbilityCost = specialAbilityCost;
         SpecialAbilityStrength = specialAbilityStrength;
@@ -24,12 +24,12 @@ public class Archer : Unit, ISpecialAbility
 
     public uint SpecialAbilityCost { get; }
 
-    public void CastSpecialAbility(List<Unit> unitsFriendly, List<Unit> unitsEnemies)
+    public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies)
     {
         unitsEnemies[new Random().Next(0, unitsEnemies.Count)].Health -= SpecialAbilityStrength;
     }
 
-    public override void TakeTurn(Unit enemy)
+    public override void TakeTurn(AbstractUnit enemy)
     {
         base.TakeTurn(enemy);
     }

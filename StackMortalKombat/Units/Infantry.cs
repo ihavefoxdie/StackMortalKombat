@@ -2,13 +2,13 @@
 
 namespace StackMortalKombat.Units;
 
-internal class Infantry : Unit, IHealable, IClone<Unit>
+internal class Infantry : AbstractUnit, IHealable, IClone<AbstractUnit>
 {
     public Infantry(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost) : base(id, name, health, maxHP, damage, defense, cost)
     {
     }
 
-    public Unit Clone()
+    public AbstractUnit Clone()
     {
         return new Infantry(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
     }
@@ -23,7 +23,7 @@ internal class Infantry : Unit, IHealable, IClone<Unit>
             Health += (int)value;
     }
 
-    public override void TakeTurn(Unit enemy)
+    public override void TakeTurn(AbstractUnit enemy)
     {
         base.TakeTurn(enemy);
     }

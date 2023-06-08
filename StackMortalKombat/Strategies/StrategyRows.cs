@@ -9,7 +9,7 @@ namespace StackMortalKombat.Strategies
         {
         }
 
-        public void MakeTurn(List<Unit> army1, List<Unit> army2)
+        public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
         {
             for (int i = 1; i < 4; i++)
             {
@@ -24,7 +24,7 @@ namespace StackMortalKombat.Strategies
 
         }
 
-        public void UseSpecialAbility(List<Unit> army1, List<Unit> army2)
+        public void UseSpecialAbility(List<AbstractUnit> army1, List<AbstractUnit> army2)
         {
             throw new NotImplementedException();
         }

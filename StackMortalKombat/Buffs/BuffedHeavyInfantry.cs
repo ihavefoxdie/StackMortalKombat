@@ -4,7 +4,7 @@ namespace StackMortalKombat.Buffs;
 
 public class BuffedHeavyInfantry : Buff
 {
-    public BuffedHeavyInfantry(Unit unit) : base(unit)
+    public BuffedHeavyInfantry(AbstractUnit unit) : base(unit)
     {
     }
 

@@ -6,8 +6,8 @@ using StackMortalKombat.Strategies;
 using StackMortalKombat.Units;
 
 
-List<Unit> units1= new List<Unit>();
-List<Unit> units2 = new List<Unit>();
+List<AbstractUnit> units1= new List<AbstractUnit>();
+List<AbstractUnit> units2 = new List<AbstractUnit>();
 
 
 BattleContext battleContext = new BattleContext(units1, units2, new StrategyHorizontally(), new InfantryFactory());
@@ -31,11 +31,11 @@ battleHistory.Execute();
 //WitcherFactory witcherFactory = new(unit);
 //var witcher = witcherFactory.CreateUnit();
 //Console.WriteLine(witcher.Name);
-//Console.WriteLine(unit is IClone<Unit>);
-//List<Unit> units = new List<Unit>();
-//units.Add(((IClone<Unit>)unit).Clone());
-//Console.WriteLine(units[0] is IClone<Unit>);
-//Console.WriteLine(witcher is IClone<Unit>);
+//Console.WriteLine(unit is IClone<AbstractUnit>);
+//List<AbstractUnit> units = new List<AbstractUnit>();
+//units.Add(((IClone<AbstractUnit>)unit).Clone());
+//Console.WriteLine(units[0] is IClone<AbstractUnit>);
+//Console.WriteLine(witcher is IClone<AbstractUnit>);
 
 //WalkTheCityAdapter walkTheCityAdapter = new(new WalkTheCity(20, 50, 10, 0.5));
 //walkTheCityAdapter.DamageTaken(100);

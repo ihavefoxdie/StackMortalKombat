@@ -5,14 +5,14 @@ namespace StackMortalKombat.Factories;
 
 public class ArcherFactory : AbstractUnitFactory
 {
-    private Unit _unit;
+    private AbstractUnit _unit;
 
-    public ArcherFactory(Unit unit)
+    public ArcherFactory(AbstractUnit unit)
     {
         _unit = unit;
     }
 
-    public override Unit CreateUnit()
+    public override AbstractUnit CreateUnit()
     {
         return new Archer(_unit, 4, 2, 2 * (4 + 2));
     }

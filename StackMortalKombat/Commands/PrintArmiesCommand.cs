@@ -33,7 +33,7 @@ namespace StackMortalKombat.Commands
             
         }
 
-        private void PrintArmy(List<Unit> units)
+        private void PrintArmy(List<AbstractUnit> units)
         {
             Console.Write("[ ");
             foreach (var item in units)

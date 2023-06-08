@@ -11,5 +11,5 @@ public interface ISpecialAbility
     public uint SpecialAbilityCost { get; }
     #endregion
 
-    public void CastSpecialAbility(List<Unit> unitsFriendly, List<Unit> unitsEnemies);
+    public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies);
 }

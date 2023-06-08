@@ -1,6 +1,6 @@
 ﻿namespace StackMortalKombat.Units;
 
-public abstract class Unit
+public abstract class AbstractUnit
 {
     public uint Id { get; }
     public string Name { get; }
@@ -11,7 +11,7 @@ public abstract class Unit
     public uint Cost { get; }
 
 
-    public Unit(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost)
+    public AbstractUnit(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost)
     {
         Id = id;
         Name = name;
@@ -27,7 +27,7 @@ public abstract class Unit
         Health -= (int)damageTaken;
     }
 
-    public virtual void TakeTurn(Unit enemy)
+    public virtual void TakeTurn(AbstractUnit enemy)
     {
         enemy.TakeDamage(Damage);
     }

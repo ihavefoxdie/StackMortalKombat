@@ -9,7 +9,7 @@ internal class StrategyVertically : IStrategy
     {
     }
 
-    public void MakeTurn(List<Unit> army1, List<Unit> army2)
+    public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         for (int i = 0; i < army1.Count; i++)
         {
@@ -33,8 +33,40 @@ internal class StrategyVertically : IStrategy
         }
     }
 
-    public void UseSpecialAbility(List<Unit> army1, List<Unit> army2)
+    public void UseSpecialAbility(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < army1.Count; i++)
+        {
+            if (army1[i].IsAlive && army1[i] is ISpecialAbility special)
+            {
+                List<AbstractUnit> friendlyReach = new();
+                List<AbstractUnit> enemyReach = new();
+                ScanForReach(i, special.SpecialAbilityRange, friendlyReach, enemyReach, army1, army2);
+                special.CastSpecialAbility(friendlyReach, enemyReach);
+            }
+        }
+    }
+
+    private void ScanForReach(int index, int range, List<AbstractUnit> friendlyReach, List<AbstractUnit> enemyReach, List<AbstractUnit> army1, List<AbstractUnit> army2)
+    {
+        for (int i = index + 1, wentThrough = range - 1; i < army1.Count; i++, wentThrough--)
+        {
+            friendlyReach.Add(army1[i]);
+            if (wentThrough == 0)
+                break;
+        }
+
+        for (int i = index - 1, wentThrough = range - 1; i >= 0; i++, wentThrough--)
+        {
+            friendlyReach.Add(army1[i]);
+            if (wentThrough == 0)
+                break;
+        }
+
+        int enemyRange = range + (index - army1.Count - 1);
+        for (int i = army2.Count - 1; i >= 0 || enemyRange > 0; i++, enemyRange--)
+        {
+            enemyReach.Add(army2[i]);
+        }
     }
 }

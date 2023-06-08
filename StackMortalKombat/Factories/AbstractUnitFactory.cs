@@ -4,5 +4,5 @@ namespace StackMortalKombat.Factories;
 
 public abstract class AbstractUnitFactory
 {
-    public abstract Unit CreateUnit();
+    public abstract AbstractUnit CreateUnit();
 }

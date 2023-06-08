@@ -3,9 +3,9 @@ using StackMortalKombat.Units;
 
 namespace StackMortalKombat.SpecialUnits;
 
-public class Healer : Unit, ISpecialAbility
+public class Healer : AbstractUnit, ISpecialAbility
 {
-    public Healer(Unit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Healer" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
+    public Healer(AbstractUnit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Healer" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
     {
         SpecialAbilityCost = specialAbilityCost;
         SpecialAbilityStrength = specialAbilityStrength;
@@ -20,16 +20,16 @@ public class Healer : Unit, ISpecialAbility
 
     public uint SpecialAbilityCost { get; }
 
-    public void CastSpecialAbility(List<Unit> unitsFriendly, List<Unit> unitsEnemies)
+    public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies)
     {
-        foreach (Unit unit in unitsFriendly)
+        foreach (AbstractUnit unit in unitsFriendly)
         {
             if (unit is IHealable healable)
                 healable.ReceiveHealing((uint)SpecialAbilityStrength);
         }
     }
 
-    public override void TakeTurn(Unit enemy)
+    public override void TakeTurn(AbstractUnit enemy)
     {
         base.TakeTurn(enemy);
     }

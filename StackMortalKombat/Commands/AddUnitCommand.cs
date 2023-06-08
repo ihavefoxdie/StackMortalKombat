@@ -32,7 +32,7 @@ namespace StackMortalKombat.Commands
         }
 
         //TODO To make out about default branch
-        private List<Unit> GetArmyByNumber()
+        private List<AbstractUnit> GetArmyByNumber()
         {
             switch (_armyNumber)
             {

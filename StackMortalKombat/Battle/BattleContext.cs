@@ -18,8 +18,8 @@ namespace StackMortalKombat.Battle
 
         public AbstractUnitFactory Factory { get; set; }
 
-        public List<Unit> army1 { get; set; }
-        public List<Unit> army2 { get; set; }
+        public List<AbstractUnit> army1 { get; set; }
+        public List<AbstractUnit> army2 { get; set; }
         public int TurnNumber { get; set; }
 
 
@@ -28,7 +28,7 @@ namespace StackMortalKombat.Battle
             TurnNumber++;
         }
 
-        public BattleContext(List<Unit> army1, List<Unit> army2, IStrategy strategy, AbstractUnitFactory factory)
+        public BattleContext(List<AbstractUnit> army1, List<AbstractUnit> army2, IStrategy strategy, AbstractUnitFactory factory)
         {
             this.army1 = army1;
             this.army2 = army2;

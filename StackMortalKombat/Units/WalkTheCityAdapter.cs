@@ -1,6 +1,6 @@
 ﻿namespace StackMortalKombat.Units;
 
-public class WalkTheCityAdapter : Unit
+public class WalkTheCityAdapter : AbstractUnit
 {
     private WalkTheCity _walkTheCity;
 
@@ -18,7 +18,7 @@ public class WalkTheCityAdapter : Unit
             base.TakeDamage(damageTaken);
     }
 
-    public override void TakeTurn(Unit enemy)
+    public override void TakeTurn(AbstractUnit enemy)
     {
         base.TakeTurn(enemy);
     }
