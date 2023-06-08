@@ -3,7 +3,7 @@ using StackMortalKombat.Units;
 
 namespace StackMortalKombat.Factories;
 
-public class ArcherFactory : UnitFactory
+public class ArcherFactory : AbstractUnitFactory
 {
     private Unit _unit;
 

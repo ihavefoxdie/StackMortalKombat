@@ -4,7 +4,7 @@ public abstract class Unit
 {
     public uint Id { get; }
     public string Name { get; }
-    public int Health { get; set; }
+    public int Health { get; set; } 
     public int MaxHP { get; }
     public uint Damage { get; }
     public uint Defense { get; }

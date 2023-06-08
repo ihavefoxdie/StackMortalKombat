@@ -2,7 +2,7 @@
 
 namespace StackMortalKombat.Factories
 {
-    public class HeavyInfantryFactory : UnitFactory
+    public class HeavyInfantryFactory : AbstractUnitFactory
     {
         public override Unit CreateUnit()
         {

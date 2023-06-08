@@ -3,7 +3,7 @@ using StackMortalKombat.Units;
 
 namespace StackMortalKombat.Factories
 {
-    public class WitcherFactory : UnitFactory
+    public class WitcherFactory : AbstractUnitFactory
     {
         private Unit _unit;
 
