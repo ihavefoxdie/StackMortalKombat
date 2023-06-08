@@ -36,5 +36,21 @@ namespace StackMortalKombat.Battle
             Factory = factory;
             TurnNumber = 0;
         }
+
+        public void ClearArmies()
+        {
+            foreach (var item in army1)
+            {
+                if (!item.IsAlive)
+                    army1.Remove(item);
+            }
+
+            foreach (var item in army2)
+            {
+                if (!item.IsAlive)
+                    army2.Remove(item);
+            }
+        }
+
     }
 }
