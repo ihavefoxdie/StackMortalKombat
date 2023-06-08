@@ -28,7 +28,6 @@ namespace StackMortalKombat.Commands
 
         public override void Undo()
         {
-            List<Unit> units = GetArmyByNumber();
             GetArmyByNumber().RemoveAt(GetArmyByNumber().Count - 1);
         }
 
