@@ -19,11 +19,12 @@ battleHistory.SetCommand(new AddUnitCommand(battleContext, new InfantryFactory()
 battleHistory.Execute();
 battleHistory.SetCommand(new AddUnitCommand(battleContext, new HeavyInfantryFactory(), 2));
 battleHistory.Execute();
-
 battleHistory.Undo();
-
-battleHistory.SetCommand(new PrintArmiesCommand(battleContext));
+battleHistory.Redo();
+battleContext.PrintArmies();
+battleHistory.SetCommand(new NextTurnCommand(battleContext));
 battleHistory.Execute();
+battleContext.PrintArmies();
 
 
 //KnightFactory knightFactory = new();

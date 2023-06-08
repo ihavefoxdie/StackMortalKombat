@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 namespace StackMortalKombat.Battle
 {
 
-    //All info about battle, like armies, strategies and so on
-    //It is better to use singletone
     public class BattleContext
     {
         public IStrategy Strategy { get; set; }
@@ -23,33 +21,64 @@ namespace StackMortalKombat.Battle
         public int TurnNumber { get; set; }
 
 
-        void NextTurn()
-        {
-            TurnNumber++;
-        }
-
         public BattleContext(List<AbstractUnit> army1, List<AbstractUnit> army2, IStrategy strategy, AbstractUnitFactory factory)
         {
             this.army1 = army1;
             this.army2 = army2;
             Strategy = strategy;
             Factory = factory;
-            TurnNumber = 0;
+            TurnNumber = 1;
+        }
+
+        public BattleContext(BattleContext previousBattleContext)
+        {
+            army1= previousBattleContext.army1;
+            army2= previousBattleContext.army2;
+            Strategy = previousBattleContext.Strategy;
+            Factory = previousBattleContext.Factory;
+            TurnNumber = previousBattleContext.TurnNumber;
         }
 
         public void ClearArmies()
         {
-            foreach (var item in army1)
+
+            for (int i = 0; i < army1.Count; i++)
             {
-                if (!item.IsAlive)
-                    army1.Remove(item);
+                if (!army1.ElementAt(i).IsAlive)
+                {
+                    army1.Remove(army1.ElementAt(i));
+                    i--;
+                }
             }
 
+            for (int i = 0; i < army2.Count; i++)
+            {
+                if (!army2.ElementAt(i).IsAlive)
+                {
+                    army2.Remove(army2.ElementAt(i));
+                    i--;
+                }
+            }
+
+        }
+
+        public void PrintArmies()
+        {
+            Console.Write("[ ");
+            foreach (var item in army1)
+            {
+                Console.Write($"{item.Name} ");
+            }
+            Console.Write("] ");
+
+            Console.Write("[ ");
             foreach (var item in army2)
             {
-                if (!item.IsAlive)
-                    army2.Remove(item);
+                Console.Write($"{item.Name} ");
             }
+
+            Console.Write("]");
+            Console.WriteLine();
         }
 
     }

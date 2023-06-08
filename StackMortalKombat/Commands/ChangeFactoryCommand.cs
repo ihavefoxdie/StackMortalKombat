@@ -10,26 +10,23 @@ namespace StackMortalKombat.Commands
 {
     internal class ChangeFactoryCommand : AbstractCommand
     {
-        private readonly AbstractUnitFactory _factory;
+        private AbstractUnitFactory _newfactory;
+        private AbstractUnitFactory _oldfactory;
 
         public ChangeFactoryCommand(BattleContext battleContext, AbstractUnitFactory unitFactory) : base(battleContext)
         {
-            _factory = unitFactory;
+            _newfactory = unitFactory;
+            _oldfactory = battleContext.Factory;
         }
 
         public override void Execute()
         {
-            _battleContext.Factory = _factory;
-        }
-
-        public override void Redo()
-        {
-            throw new NotImplementedException();
+            _battleContext.Factory = _newfactory;
         }
 
         public override void Undo()
         {
-            throw new NotImplementedException();
+            _battleContext.Factory = _oldfactory;
         }
     }
 }

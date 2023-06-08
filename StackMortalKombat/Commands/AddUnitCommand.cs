@@ -9,26 +9,24 @@ namespace StackMortalKombat.Commands
     {
         private readonly AbstractUnitFactory _unitFactory;
         private readonly int _armyNumber;
-
+        private AbstractUnit _newUnit;
+        
         public AddUnitCommand(BattleContext battleContext, AbstractUnitFactory unit, int armyNumber) : base(battleContext)
         {
             _unitFactory = unit;
             _armyNumber = armyNumber;
+            _newUnit = _unitFactory.CreateUnit();
         }
 
         public override void Execute()
         {
-            GetArmyByNumber().Add(_unitFactory.CreateUnit());
+            GetArmyByNumber().Add(_newUnit);
         }
 
-        public override void Redo()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void Undo()
         {
-            GetArmyByNumber().RemoveAt(GetArmyByNumber().Count - 1);
+            GetArmyByNumber().Remove(_newUnit);
         }
 
         //TODO To make out about default branch
