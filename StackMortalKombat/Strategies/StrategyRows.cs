@@ -13,11 +13,15 @@ public class StrategyRows : IStrategy
     {
         for (int i = 1; i < 4; i++)
         {
+            if (army1.Count - i < 0 || army2.Count - i < 0)
+                break;
             army1.ElementAt(army1.Count - i).TakeTurn(army2.ElementAt(army2.Count - i));
         }
 
         for (int i = 1; i < 4; i++)
         {
+            if (army1.Count - i < 0 || army2.Count - i < 0)
+                break;
             if (army2.ElementAt(army2.Count - i).IsAlive)
                 army1.ElementAt(army2.Count - i).TakeDamage(army2.ElementAt(army1.Count - i).Damage);
         }
