@@ -29,8 +29,8 @@ public class Archer : Unit, ISpecialAbility
         unitsEnemies[new Random().Next(0, unitsEnemies.Count)].Health -= SpecialAbilityStrength;
     }
 
-    public override void TakeTurn()
+    public override void TakeTurn(Unit enemy)
     {
-        base.TakeTurn();
+        base.TakeTurn(enemy);
     }
 }

@@ -29,8 +29,8 @@ public class Healer : Unit, ISpecialAbility
         }
     }
 
-    public override void TakeTurn()
+    public override void TakeTurn(Unit enemy)
     {
-        base.TakeTurn();
+        base.TakeTurn(enemy);
     }
 }

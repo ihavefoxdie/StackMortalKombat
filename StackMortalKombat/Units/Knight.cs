@@ -2,7 +2,7 @@
 
 namespace StackMortalKombat.Units;
 
-internal class Knight : Unit, IClone<Unit>
+public class Knight : Unit, IClone<Unit>
 {
     public Knight(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost) : base(id, name, health, maxHP, damage, defense, cost)
     {
@@ -13,8 +13,8 @@ internal class Knight : Unit, IClone<Unit>
         return new Knight(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
     }
 
-    public override void TakeTurn()
+    public override void TakeTurn(Unit enemy)
     {
-        base.TakeTurn();
+        base.TakeTurn(enemy);
     }
 }

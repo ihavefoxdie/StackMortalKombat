@@ -1,64 +1,63 @@
-﻿namespace StackMortalKombat.Units
+﻿namespace StackMortalKombat.Units;
+
+public class WalkTheCity
 {
-    internal class WalkTheCity
+    private readonly int _health;
+    private readonly uint _defence;
+    private readonly uint _cost;
+    private int _currentHealth;
+
+    public readonly double DamageAbsorber;
+
+    public WalkTheCity(int health, uint defence, uint cost, double damageAbsorb = 0.2)
     {
-        private readonly int _health;
-        private readonly uint _defence;
-        private readonly uint _cost;
-        private int _currentHealth;
+        _defence = defence;
+        _health = _currentHealth = health;
+        DamageAbsorber = damageAbsorb;
+        _cost = cost;
+    }
 
-        public readonly double DamageAbsorber;
+    public uint GetDefence()
+    {
+        return _defence;
+    }
 
-        public WalkTheCity(int health, uint defence, uint cost, double damageAbsorb = 0.2)
-        {
-            _defence = defence;
-            _health = _currentHealth = health;
-            DamageAbsorber = damageAbsorb;
-            _cost = cost;
-        }
+    public uint GetStrength()
+    {
+        return 0;
+    }
 
-        public uint GetDefence()
-        {
-            return _defence;
-        }
+    public int GetHealth()
+    {
+        return _health;
+    }
 
-        public uint GetStrength()
-        {
-            return 0;
-        }
+    public int GetCurrentHealth()
+    {
+        return _currentHealth;
+    }
 
-        public int GetHealth()
-        {
-            return _health;
-        }
+    public uint GetCost()
+    {
+        return _cost;
+    }
 
-        public int GetCurrentHealth()
-        {
-            return _currentHealth;
-        }
+    public void TakeDamage(int damage)
+    {
+        if (_currentHealth == 0)
+            throw new Exception("Unit are death!");
 
-        public uint GetCost()
-        {
-            return _cost;
-        }
+        if (damage < 0)
+            throw new ArgumentException("Argument must be greater than zero", "damage");
 
-        public void TakeDamage(int damage)
-        {
-            if (_currentHealth == 0)
-                throw new Exception("Unit are death!");
+        _currentHealth -= (int)Math.Max(damage - _defence, 0);
 
-            if (damage < 0)
-                throw new ArgumentException("Argument must be greater than zero", "damage");
+        if (_currentHealth < 0)
+            _currentHealth = 0;
+    }
 
-            _currentHealth -= (int)Math.Max(damage - _defence, 0);
-
-            if (_currentHealth < 0)
-                _currentHealth = 0;
-        }
-
-        public bool IsDead
-        {
-            get { return _currentHealth <= 0; }
-        }
+    public bool IsDead
+    {
+        get { return _currentHealth <= 0; }
     }
 }
