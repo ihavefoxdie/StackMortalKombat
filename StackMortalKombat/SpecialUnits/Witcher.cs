@@ -22,7 +22,7 @@ public class Witcher : Unit, ISpecialAbility
 
     public void CastSpecialAbility(ref List<Unit> unitsFriendly, ref List<Unit> unitsEnemies)
     {
-        List<int> clonables = new List<int>();
+        List<int> clonables = new();
         for (int i = 0; i < unitsFriendly.Count; i++)
         {
             if (unitsFriendly[i] is IClone<Unit>)
@@ -34,8 +34,8 @@ public class Witcher : Unit, ISpecialAbility
         }
     }
 
-    public override void TakeTurn()
+    public override void TakeTurn(Unit enemy)
     {
-        base.TakeTurn();
+        base.TakeTurn(enemy);
     }
 }

@@ -23,8 +23,8 @@ internal class Infantry : Unit, IHealable, IClone<Unit>
             Health += (int)value;
     }
 
-    public override void TakeTurn()
+    public override void TakeTurn(Unit enemy)
     {
-        base.TakeTurn();
+        base.TakeTurn(enemy);
     }
 }

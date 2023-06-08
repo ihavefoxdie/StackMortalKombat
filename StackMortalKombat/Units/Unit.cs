@@ -28,8 +28,8 @@ public abstract class Unit
         Health -= (int)damageTaken;
     }
 
-    public virtual void TakeTurn()
+    public virtual void TakeTurn(Unit enemy)
     {
-
+        enemy.Health -= (int)Damage;
     }
 }
