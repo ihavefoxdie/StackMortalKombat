@@ -8,7 +8,7 @@ public class BuffedHeavyInfantry : Buff
     {
     }
 
-    public override void DamageTaken(uint damageTaken)
+    public override void TakeDamage(uint damageTaken)
     {
         if ((int)damageTaken - 2 < 0)
         {
@@ -16,6 +16,6 @@ public class BuffedHeavyInfantry : Buff
         }
         else
             damageTaken -= 2;
-        base.DamageTaken(damageTaken);
+        base.TakeDamage(damageTaken);
     }
 }

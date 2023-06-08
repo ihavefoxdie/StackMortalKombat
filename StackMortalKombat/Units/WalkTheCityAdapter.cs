@@ -10,12 +10,12 @@ public class WalkTheCityAdapter : Unit
     }
 
     // Отличие в получаемом дамаге (cтена слегка режет получаемый урон)
-    public override void DamageTaken(uint damageTaken)
+    public override void TakeDamage(uint damageTaken)
     {
         if (_walkTheCity.DamageAbsorber > 0 && _walkTheCity.DamageAbsorber < 1)
             Health -= (int)(damageTaken * _walkTheCity.DamageAbsorber);
         else
-            base.DamageTaken(damageTaken);
+            base.TakeDamage(damageTaken);
     }
 
     public override void TakeTurn(Unit enemy)

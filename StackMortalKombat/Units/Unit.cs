@@ -22,14 +22,15 @@ public abstract class Unit
         Cost = cost;
     }
 
-
-    public virtual void DamageTaken(uint damageTaken)
+    public virtual void TakeDamage(uint damageTaken)
     {
         Health -= (int)damageTaken;
     }
 
     public virtual void TakeTurn(Unit enemy)
     {
-        enemy.Health -= (int)Damage;
+        enemy.TakeDamage(Damage);
     }
+
+    public bool IsAlive { get { return (Health > 0); } }
 }
