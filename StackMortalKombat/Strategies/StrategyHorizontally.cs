@@ -35,17 +35,17 @@ public class StrategyHorizontally : IStrategy
 
     private void ScanForReach(int index, int range, List<AbstractUnit> friendlyReach, List<AbstractUnit> enemyReach, List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
-        for (int i = index + 1, wentThrough = range - 1; i < army1.Count; i++, wentThrough--)
+        for (int i = index + 1, travelled = range - 1; i < army1.Count; i++, travelled--)
         {
             friendlyReach.Add(army1[i]);
-            if (wentThrough == 0)
+            if (travelled == 0)
                 break;
         }
 
-        for (int i = index - 1, wentThrough = range - 1; i >= 0; i++, wentThrough--)
+        for (int i = index - 1, travelled = range - 1; i >= 0; i++, travelled--)
         {
             friendlyReach.Add(army1[i]);
-            if(wentThrough == 0)
+            if(travelled == 0)
                 break;
         }
 
@@ -56,10 +56,10 @@ public class StrategyHorizontally : IStrategy
         }
     }
 
-    /*private bool Assist(List<AbstractUnit> friendly, AbstractUnit unit, int wentThrough)
+    /*private bool Assist(List<AbstractUnit> friendly, AbstractUnit unit, int travelled)
     {
         friendly.Add(unit);
-        if (wentThrough == 0)
+        if (travelled == 0)
             return false;
         return true;
     }*/

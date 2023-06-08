@@ -3,7 +3,7 @@ using StackMortalKombat.Units;
 
 namespace StackMortalKombat.Strategies;
 
-internal class StrategyVertically : IStrategy
+public class StrategyVertically : IStrategy
 {
     public StrategyVertically()
     {
@@ -49,24 +49,21 @@ internal class StrategyVertically : IStrategy
 
     private void ScanForReach(int index, int range, List<AbstractUnit> friendlyReach, List<AbstractUnit> enemyReach, List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
-        for (int i = index + 1, wentThrough = range - 1; i < army1.Count; i++, wentThrough--)
+        for (int i = index + 1, travelled = range - 1; i < army1.Count; i++, travelled--)
         {
             friendlyReach.Add(army1[i]);
-            if (wentThrough == 0)
+            if (travelled == 0)
                 break;
         }
 
-        for (int i = index - 1, wentThrough = range - 1; i >= 0; i++, wentThrough--)
+        for (int i = index - 1, travelled = range - 1; i >= 0; i++, travelled--)
         {
             friendlyReach.Add(army1[i]);
-            if (wentThrough == 0)
+            if (travelled == 0)
                 break;
         }
 
-        int enemyRange = range + (index - army1.Count - 1);
-        for (int i = army2.Count - 1; i >= 0 || enemyRange > 0; i++, enemyRange--)
-        {
-            enemyReach.Add(army2[i]);
-        }
+        if (army2[index] != null)
+            enemyReach.Add(army2[index]);
     }
 }
