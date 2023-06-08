@@ -9,7 +9,7 @@ namespace StackMortalKombat.Commands
         private AbstractCommand _command;
         private Stack<AbstractCommand> _undoCommands = new();
         private Stack<AbstractCommand> _redoCommands = new();
-        private readonly BattleContext _battleContext;
+        private BattleContext _battleContext;
 
         public void SetCommand(AbstractCommand command)
         {

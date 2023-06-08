@@ -4,7 +4,7 @@ namespace StackMortalKombat.Commands;
 
 internal class NextTurnCommand : AbstractCommand
 {
-    private BattleContext _oldBattleContext;
+    private readonly BattleContext _oldBattleContext;
 
     public NextTurnCommand(BattleContext battleContext) : base(battleContext)
     {
@@ -31,6 +31,10 @@ internal class NextTurnCommand : AbstractCommand
 
     public override void Undo()
     {
-        _battleContext = _oldBattleContext;
+        _battleContext.army1 = _oldBattleContext.army1;
+        _battleContext.army2 = _oldBattleContext.army2;
+        _battleContext.Strategy = _oldBattleContext.Strategy;
+        _battleContext.Factory = _oldBattleContext.Factory;
+        _battleContext.TurnNumber = _oldBattleContext.TurnNumber;
     }
 }

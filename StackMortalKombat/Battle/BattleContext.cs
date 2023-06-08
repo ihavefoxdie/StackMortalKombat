@@ -1,11 +1,6 @@
 ﻿using StackMortalKombat.Factories;
 using StackMortalKombat.Interfaces;
 using StackMortalKombat.Units;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StackMortalKombat.Battle
 {
@@ -32,8 +27,8 @@ namespace StackMortalKombat.Battle
 
         public BattleContext(BattleContext previousBattleContext)
         {
-            army1= previousBattleContext.army1;
-            army2= previousBattleContext.army2;
+            army1 = new List<AbstractUnit>(previousBattleContext.army1);
+            army2 = new List<AbstractUnit>(previousBattleContext.army2);
             Strategy = previousBattleContext.Strategy;
             Factory = previousBattleContext.Factory;
             TurnNumber = previousBattleContext.TurnNumber;
@@ -65,16 +60,21 @@ namespace StackMortalKombat.Battle
         public void PrintArmies()
         {
             Console.Write("[ ");
-            foreach (var item in army1)
+
+            for (int i = 0; i < army1.Count; i++)
             {
-                Console.Write($"{item.Name} ");
+                Console.Write($"{army1.ElementAt(i).Name} ");
+
             }
+
             Console.Write("] ");
 
             Console.Write("[ ");
-            foreach (var item in army2)
+
+            for (int i = 0; i < army2.Count; i++)
             {
-                Console.Write($"{item.Name} ");
+                Console.Write($"{army2.ElementAt(i).Name} ");
+
             }
 
             Console.Write("]");

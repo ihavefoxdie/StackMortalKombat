@@ -24,6 +24,9 @@ battleHistory.Redo();
 battleContext.PrintArmies();
 battleHistory.SetCommand(new NextTurnCommand(battleContext));
 battleHistory.Execute();
+battleHistory.SetCommand(new NextTurnCommand(battleContext));
+battleHistory.Execute();
+battleHistory.Undo();
 battleContext.PrintArmies();
 
 
