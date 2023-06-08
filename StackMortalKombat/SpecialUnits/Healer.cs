@@ -20,7 +20,7 @@ public class Healer : Unit, ISpecialAbility
 
     public uint SpecialAbilityCost { get; }
 
-    public void CastSpecialAbility(ref List<Unit> unitsFriendly, ref List<Unit> unitsEnemies)
+    public void CastSpecialAbility(List<Unit> unitsFriendly, List<Unit> unitsEnemies)
     {
         foreach (Unit unit in unitsFriendly)
         {
