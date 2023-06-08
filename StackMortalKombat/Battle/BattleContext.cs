@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace StackMortalKombat.Battle
 {
 
-    //All info about battle, like/armies, strategies and so on
+    //All info about battle, like armies, strategies and so on
     //It is better to use singletone
     public class BattleContext
     {

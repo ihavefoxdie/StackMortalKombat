@@ -18,27 +18,7 @@ namespace StackMortalKombat.Commands
 
         public override void Execute()
         {
-            switch (_armyNumber)
-            {
-                case 1:
-                    {
-                        _battleContext.army1.Add(_unitFactory.CreateUnit());
-                        break;
-                    }
-
-                case 2:
-                    {
-                        _battleContext.army2.Add(_unitFactory.CreateUnit());
-                        break;
-                    }
-
-                default:
-                    {
-                        Debug.WriteLine("ArmyNumber is incorrect");
-                        break;
-                    }
-
-            }
+            GetArmyByNumber().Add(_unitFactory.CreateUnit());
         }
 
         public override void Redo()
