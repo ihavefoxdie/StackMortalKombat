@@ -1,5 +1,4 @@
 ﻿using StackMortalKombat.Units;
-using System.Runtime.CompilerServices;
 
 namespace StackMortalKombat.Factories
 {
@@ -11,7 +10,7 @@ namespace StackMortalKombat.Factories
 
         public override AbstractUnit CreateUnit()
         {
-            return new Infantry(1, "Infantry", 1, 1, 1, 2, 1 + 1 + 2);
+            return new Infantry(1, "Infantry", 2, 2, 1, 1, 1 + 1 + 2);
         }
 
         public override int GetCost()
