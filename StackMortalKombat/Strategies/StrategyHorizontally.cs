@@ -9,11 +9,22 @@ public class StrategyHorizontally : IStrategy
     {
     }
 
+    private static uint GetArmyCost(List<AbstractUnit> army)
+    {
+        uint cost = 0;
+        foreach (AbstractUnit unit in army)
+        {
+            cost += unit.Cost;
+        }
+
+        return cost;
+    }
+
     public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         if (army1.Last() != null && army2.Last() != null)
         {
-            army1.Last().TakeTurn(army2.Last());
+            army1.Last().TakeTurn(army2.Last(), GetArmyCost(army2));
             if (army2.Last().IsAlive)
                 army1.Last().TakeDamage(army2.Last().Damage);
         }

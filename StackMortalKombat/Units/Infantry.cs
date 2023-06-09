@@ -24,9 +24,9 @@ internal class Infantry : AbstractUnit, IHealable, IClone<AbstractUnit>
             Health += (int)value;
     }
 
-    public override void TakeTurn(AbstractUnit enemy)
+    public override void TakeTurn(AbstractUnit enemy, uint armyCost)
     {
-        base.TakeTurn(enemy);
+        base.TakeTurn(enemy, armyCost);
     }
 
     public override Infantry ReturnCopy()

@@ -9,13 +9,24 @@ public class StrategyRows : IStrategy
     {
     }
 
+    private static uint GetArmyCost(List<AbstractUnit> army)
+    {
+        uint cost = 0;
+        foreach (AbstractUnit unit in army)
+        {
+            cost += unit.Cost;
+        }
+
+        return cost;
+    }
+
     public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         for (int i = 1; i < 4; i++)
         {
             if (army1.Count - i < 0 || army2.Count - i < 0)
                 break;
-            army1.ElementAt(army1.Count - i).TakeTurn(army2.ElementAt(army2.Count - i));
+            army1.ElementAt(army1.Count - i).TakeTurn(army2.ElementAt(army2.Count - i), GetArmyCost(army2));
         }
 
         for (int i = 1; i < 4; i++)

@@ -9,6 +9,17 @@ public class StrategyVertically : IStrategy
     {
     }
 
+    private uint GetArmyCost(List<AbstractUnit> army)
+    {
+        uint cost = 0;
+        foreach (AbstractUnit unit in army)
+        {
+            cost += unit.Cost;
+        }
+
+        return cost;
+    }
+
     public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
     {
         for (int i = 0; i < army1.Count; i++)
@@ -17,7 +28,7 @@ public class StrategyVertically : IStrategy
             {
                 return;
             }
-            army1.ElementAt(i).TakeTurn(army2.ElementAt(i));
+            army1.ElementAt(i).TakeTurn(army2.ElementAt(i), GetArmyCost(army2));
         }
 
         for (int i = 0; i < army2.Count; i++)

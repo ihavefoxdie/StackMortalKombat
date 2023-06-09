@@ -48,8 +48,10 @@ public class BuffedHeavyInfantry : BuffedUnit
         base.TakeDamage(damageTaken);
     }
 
-    public override void TakeTurn(AbstractUnit enemy)
+    public override void TakeTurn(AbstractUnit enemy, uint armyCost)
     {
-        enemy.TakeDamage(_unit.Damage + (uint)AccumilateBuffEffect("Attack"));
+        decimal damage = (((int)armyCost - (int)enemy.Defense) * ((int)Damage+AccumilateBuffEffect("Attack")) / 100);
+        if (damage > 0)
+            enemy.TakeDamage(Convert.ToUInt32(Math.Round(damage, MidpointRounding.AwayFromZero)));
     }
 }

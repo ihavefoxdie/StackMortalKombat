@@ -37,8 +37,8 @@ public class Healer : AbstractUnit, ISpecialAbility
         return new Archer(_unit.ReturnCopy(), SpecialAbilityRange, SpecialAbilityStrength, SpecialAbilityCost);
     }
 
-    public override void TakeTurn(AbstractUnit enemy)
+    public override void TakeTurn(AbstractUnit enemy, uint armyCost)
     {
-        base.TakeTurn(enemy);
+        base.TakeTurn(enemy, armyCost);
     }
 }

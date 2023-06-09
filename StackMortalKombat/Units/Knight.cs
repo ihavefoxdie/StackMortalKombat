@@ -18,8 +18,8 @@ public class Knight : AbstractUnit, IClone<AbstractUnit>
         return new Knight(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
     }
 
-    public override void TakeTurn(AbstractUnit enemy)
+    public override void TakeTurn(AbstractUnit enemy, uint armyCost)
     {
-        base.TakeTurn(enemy);
+        base.TakeTurn(enemy, armyCost);
     }
 }
