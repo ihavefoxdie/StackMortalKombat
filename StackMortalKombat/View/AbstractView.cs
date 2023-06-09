@@ -1,4 +1,5 @@
-﻿using StackMortalKombat.Commands;
+﻿using Spectre.Console;
+using StackMortalKombat.Commands;
 
 namespace StackMortalKombat.Interfaces
 {
@@ -7,23 +8,30 @@ namespace StackMortalKombat.Interfaces
         protected BattleHistory _battleHistory;
 
         public abstract void StartMenu();
-        protected abstract void ValueMenu();
-        protected abstract void UnitsToAddMenu();
+
         protected abstract void StrategyMenu();
 
-        public abstract void ShowBattleInfo();
+        public abstract void BattleMenu();
 
-        public void SetBattleHistory(BattleHistory battleHistory)
-        {
-            _battleHistory = battleHistory;
-        }
 
         public void GameLoop()
         {
             if (isGameEnded())
-                return;
+            {
+                int number = 0;
+                if (_battleHistory._battleContext.army1.Count == 0)
+                    number = 1;
+                else
+                    number = 2;
 
-            ShowBattleInfo();
+                AnsiConsole.Write(new FigletText($"Armie#{number} wins!!!")
+                    .Centered()
+                    .Color(Color.Yellow3)
+                    );
+                return;
+            }
+            BattleMenu();
+            GameLoop();
         }
 
         protected virtual bool isGameEnded()
@@ -33,9 +41,9 @@ namespace StackMortalKombat.Interfaces
             return false;
         }
 
-        public AbstractView()
+        public AbstractView(BattleHistory battleHistory)
         {
-
+            _battleHistory = battleHistory;
         }
 
 

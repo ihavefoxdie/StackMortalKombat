@@ -7,7 +7,7 @@ namespace StackMortalKombat.Factories
     {
         private AbstractUnit _unit;
 
-        public WitcherFactory(AbstractUnit unit)
+        public WitcherFactory(AbstractUnit unit) : base ("Witcher")
         {
             _unit = unit;
         }

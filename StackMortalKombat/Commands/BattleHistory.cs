@@ -1,4 +1,5 @@
 ﻿using StackMortalKombat.Battle;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace StackMortalKombat.Commands
@@ -7,8 +8,9 @@ namespace StackMortalKombat.Commands
     public class BattleHistory
     {
         private AbstractCommand _command;
-        private Stack<AbstractCommand> _undoCommands = new();
-        private Stack<AbstractCommand> _redoCommands = new();
+        public Stack<AbstractCommand> undoCommands { get; private set; }
+        public Stack<AbstractCommand> redoCommands { get; private set; }
+
         public bool isGameEnded = false;
         public BattleContext _battleContext { get; set; }
 
@@ -22,7 +24,7 @@ namespace StackMortalKombat.Commands
             if (_command != null)
             {
                 _command.Execute();
-                _undoCommands.Push(_command);
+                undoCommands.Push(_command);
                 if (_battleContext.army1.Count == 0 || _battleContext.army2.Count == 0)
                     isGameEnded = true;
             }
@@ -32,11 +34,11 @@ namespace StackMortalKombat.Commands
 
         public void Undo()
         {
-            if (_undoCommands.Any())
+            if (undoCommands.Any())
             {
-                AbstractCommand command = _undoCommands.Pop();
+                AbstractCommand command = undoCommands.Pop();
                 command.Undo();
-                _redoCommands.Push(command);
+                redoCommands.Push(command);
             }
 
             else
@@ -45,11 +47,11 @@ namespace StackMortalKombat.Commands
 
         public void Redo()
         {
-            if (_redoCommands.Any())
+            if (redoCommands.Any())
             {
-                AbstractCommand command = _redoCommands.Pop();
+                AbstractCommand command = redoCommands.Pop();
                 command.Execute();
-                _undoCommands.Push(command);
+                undoCommands.Push(command);
             }
 
             else
@@ -58,6 +60,8 @@ namespace StackMortalKombat.Commands
 
         public BattleHistory(BattleContext battleContext)
         {
+            undoCommands = new Stack<AbstractCommand>();
+            redoCommands = new Stack<AbstractCommand>();
             _battleContext = battleContext;
         }
 

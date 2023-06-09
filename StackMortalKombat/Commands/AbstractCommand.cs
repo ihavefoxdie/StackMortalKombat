@@ -12,7 +12,7 @@ namespace StackMortalKombat.Commands
 
         public AbstractCommand(BattleContext battleContext)
         {
-            _battleContext= battleContext;
+            _battleContext = battleContext;
         }
     }
 

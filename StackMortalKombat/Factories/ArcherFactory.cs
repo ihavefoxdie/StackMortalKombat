@@ -7,7 +7,7 @@ public class ArcherFactory : AbstractUnitFactory
 {
     private AbstractUnit _unit;
 
-    public ArcherFactory(AbstractUnit unit)
+    public ArcherFactory(AbstractUnit unit) : base("Archer")
     {
         _unit = unit;
     }

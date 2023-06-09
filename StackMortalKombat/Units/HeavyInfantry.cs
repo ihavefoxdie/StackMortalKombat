@@ -1,9 +1,11 @@
 ﻿using StackMortalKombat.Interfaces;
+using System.Runtime.CompilerServices;
 
 namespace StackMortalKombat.Units;
 
 public class HeavyInfantry : AbstractUnit, IHealable, IClone<AbstractUnit>
 {
+
     public HeavyInfantry(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost) : base(id, name, health, maxHP, damage, defense, cost)
     {
     }

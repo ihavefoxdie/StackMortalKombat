@@ -6,11 +6,18 @@ using StackMortalKombat.Strategies;
 using StackMortalKombat.Units;
 using StackMortalKombat.View;
 
-ConsoleView consoleView = new();
+//TODO BattleContext
+//TODO BattleHistory
+//TODO View
 
-Game game = new(consoleView);
-game.View.StartMenu();
-game.View.GameLoop();
+BattleContext battleContext = new();
+BattleHistory battleHistory = new(battleContext);
+ConsoleView consoleView = new(battleHistory);
+
+Game game = new(battleContext, battleHistory,consoleView);
+
+
+//game.View.GameLoop();
 
 
 //List<AbstractUnit> units1= new List<AbstractUnit>();

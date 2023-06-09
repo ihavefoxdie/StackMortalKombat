@@ -14,20 +14,29 @@ namespace StackMortalKombat.Battle
         public List<AbstractUnit> army1 { get; set; }
         public List<AbstractUnit> army2 { get; set; }
         public int TurnNumber { get; set; }
+        public uint Value { get; set; }
 
+        public BattleContext()
+        {
 
-        public BattleContext(List<AbstractUnit> army1, List<AbstractUnit> army2, IStrategy strategy, AbstractUnitFactory factory)
+        }
+
+        public BattleContext(List<AbstractUnit> army1, List<AbstractUnit> army2, IStrategy strategy, AbstractUnitFactory factory = null)
         {
             this.army1 = army1;
             this.army2 = army2;
             Strategy = strategy;
-            Factory = factory;
+            if (factory == null)
+                Factory = new InfantryFactory();
+            else
+                Factory = factory;
             TurnNumber = 1;
         }
 
         public BattleContext(BattleContext previousBattleContext)
         {
-            army1 = new List<AbstractUnit>(previousBattleContext.army1);
+            //army1 = new List<AbstractUnit>(previousBattleContext.army1);
+            army1 = previousBattleContext.army1.ToList();
             army2 = new List<AbstractUnit>(previousBattleContext.army2);
             Strategy = previousBattleContext.Strategy;
             Factory = previousBattleContext.Factory;

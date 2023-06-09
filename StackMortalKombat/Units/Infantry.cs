@@ -4,6 +4,7 @@ namespace StackMortalKombat.Units;
 
 internal class Infantry : AbstractUnit, IHealable, IClone<AbstractUnit>
 {
+    
     public Infantry(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost) : base(id, name, health, maxHP, damage, defense, cost)
     {
     }

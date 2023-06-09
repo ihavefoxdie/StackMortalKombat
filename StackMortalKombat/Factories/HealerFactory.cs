@@ -7,7 +7,7 @@ public class HealerFactory : AbstractUnitFactory
 {
     private AbstractUnit _unit;
 
-    public HealerFactory(AbstractUnit unit)
+    public HealerFactory(AbstractUnit unit) : base("Healer")
     {
         _unit = unit;
     }

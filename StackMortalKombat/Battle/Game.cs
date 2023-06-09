@@ -1,11 +1,5 @@
 ﻿using StackMortalKombat.Commands;
 using StackMortalKombat.Interfaces;
-using StackMortalKombat.View;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StackMortalKombat.Battle
 {
@@ -13,13 +7,15 @@ namespace StackMortalKombat.Battle
     {
         private BattleContext _battleContext;
         private BattleHistory _battleHistory;
-        public AbstractView View;
+        private AbstractView _view;
 
-        public Game(AbstractView view)
+        public Game(BattleContext battleContext, BattleHistory battleHistory, AbstractView view)
         {
-            _battleHistory = new BattleHistory(_battleContext);
-            View = view;
-            View.SetBattleHistory(_battleHistory);
+            _battleContext = battleContext;
+            _battleHistory = battleHistory;
+            _view = view;
+            _view.StartMenu();
+            _view.GameLoop();
         }
 
     }
