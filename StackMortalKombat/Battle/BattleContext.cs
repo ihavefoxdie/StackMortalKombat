@@ -13,7 +13,7 @@ namespace StackMortalKombat.Battle
 
         public List<AbstractUnit> army1 { get; set; }
         public List<AbstractUnit> army2 { get; set; }
-        public int TurnNumber { get; set; }
+        public int TurnNumber { get; set; } = 1;
         public uint Value { get; set; }
 
         public BattleContext()
@@ -30,7 +30,6 @@ namespace StackMortalKombat.Battle
                 Factory = new InfantryFactory();
             else
                 Factory = factory;
-            TurnNumber = 1;
         }
 
         public BattleContext(BattleContext previousBattleContext)
