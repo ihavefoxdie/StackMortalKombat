@@ -13,4 +13,9 @@ public class KnightFactory : AbstractUnitFactory
     {
         return new Knight(3, "Knight", 10, 10, 3, 3, 10 + 3 + 3);
     }
+
+    public override int GetCost()
+    {
+        return 10 + 3 + 3;
+    }
 }

@@ -16,5 +16,10 @@ namespace StackMortalKombat.Factories
         {
            return new Witcher(_unit, 2, 3, 2*(2+3));
         }
+
+        public override int GetCost()
+        {
+            return (int)_unit.Cost + 2 * (2 + 3);
+        }
     }
 }

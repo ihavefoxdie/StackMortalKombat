@@ -45,7 +45,7 @@ internal class ConsoleView : AbstractView
                 break;
 
             case "ChangeStrategy":
-                
+
                 _battleHistory.SetCommand(new ChangeStrategyCommand(_battleHistory._battleContext, ChooseStrategy()));
                 _battleHistory.Execute();
                 break;
@@ -71,7 +71,7 @@ internal class ConsoleView : AbstractView
 
     public override void StartMenu()
     {
-        uint tempValue = 0;
+        int tempValue = 0;
         List<AbstractUnit> army1 = new List<AbstractUnit>();
         List<AbstractUnit> army2 = new List<AbstractUnit>();
         IStrategy strategy;
@@ -79,7 +79,7 @@ internal class ConsoleView : AbstractView
 
         PrintIntro();
 
-        tempValue = AnsiConsole.Ask<uint>("Enter Army [underline yellow]Value[/]:");
+        tempValue = (int)AnsiConsole.Ask<uint>("Enter Army [underline yellow]Value[/]:");
         army1 = FillArmy(1, tempValue);
         army2 = FillArmy(2, tempValue);
         strategy = ChooseStrategy();
@@ -89,31 +89,79 @@ internal class ConsoleView : AbstractView
 
 
 
-
-        List<AbstractUnit> FillArmy(int armyNumber, uint value)
+        List<AbstractUnit> FillArmy(int armyNumber, int value)
         {
 
             List<AbstractUnit> list = new List<AbstractUnit>();
 
-            AnsiConsole.Write(new FigletText($"Army #{armyNumber}")
-                .Justify(Justify.Center)
-                .Color(Color.Orange1));
-
-            while (value > 0)
+            while (value >= 4)
             {
-                var newFactory = AnsiConsole.Prompt(new SelectionPrompt<AbstractUnitFactory>()
-                .PageSize(3)
-                .AddChoices(new AbstractUnitFactory[] { new InfantryFactory(), new HeavyInfantryFactory(), new KnightFactory() })
-                .UseConverter(UnitName)
-                );
-
-                list.Add(newFactory.CreateUnit());
+                AnsiConsole.Write(new FigletText($"Army #{armyNumber}")
+                            .Justify(Justify.Center)
+                            .Color(Color.Orange1));
                 Thread.Sleep(100);
 
-                //TODO Value is static!!!
-                value -= 5;
+                ChooseUnit();
+
             }
-            return list;
+                return list;
+                void ChooseUnit()
+                {
+                    AbstractUnitFactory factory;
+
+                    string unitToAdd = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                        .Title("Units To Add:").HighlightStyle(Color.Purple_1)
+                        .PageSize(10).AddChoices(new[] {
+                    "Infantry",
+                    "Heavy Infantry",
+                    "Knight",
+                    "WalkTheCity",
+                    "Special Infantry",
+                    "Archer",
+                    "Healer",
+                    "Witcher",
+                        }));
+
+
+                    switch (unitToAdd)
+                    {
+                        case "Infantry":
+                            factory = new InfantryFactory();
+                            int unitValue = factory.GetCost();
+                            if (tempValue - unitValue >= 0)
+                            {
+                                list.Add(factory.CreateUnit());
+                                tempValue -= unitValue;
+                            }
+                            else
+                            {
+                                AnsiConsole.Console.Markup($"[red]You can't afford it[/] {tempValue} - {unitValue}");
+                                ChooseUnit();
+                            }
+                            break;
+
+
+                        default:
+                            break;
+                    }
+                }
+
+            //while (value > 0)
+            //{
+            //    var newFactory = AnsiConsole.Prompt(new SelectionPrompt<AbstractUnitFactory>()
+            //    .PageSize(3)
+            //    .AddChoices(new AbstractUnitFactory[] { new InfantryFactory(), new HeavyInfantryFactory(), new KnightFactory() })
+            //    .UseConverter(UnitName)
+            //    );
+
+
+
+            //    list.Add(newFactory.CreateUnit());
+            //    Thread.Sleep(100);
+
+            //    //TODO Value is static!!!
+            //    value -= (int)list.Last().Cost;
+            //}
         }
     }
 

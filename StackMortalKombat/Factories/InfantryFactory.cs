@@ -13,5 +13,10 @@ namespace StackMortalKombat.Factories
         {
             return new Infantry(1, "Infantry", 1, 1, 1, 2, 1 + 1 + 2);
         }
+
+        public override int GetCost()
+        {
+            return 1 + 1 + 2;
+        }
     }
 }

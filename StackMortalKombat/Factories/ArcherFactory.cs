@@ -12,8 +12,14 @@ public class ArcherFactory : AbstractUnitFactory
         _unit = unit;
     }
 
+
     public override AbstractUnit CreateUnit()
     {
         return new Archer(_unit, 4, 2, 2 * (4 + 2));
+    }
+
+    public override int GetCost()
+    {
+        return (int)_unit.Cost + 2 * (4 + 2);
     }
 }

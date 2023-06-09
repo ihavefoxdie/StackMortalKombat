@@ -4,6 +4,7 @@ namespace StackMortalKombat.Factories
 {
     public class HeavyInfantryFactory : AbstractUnitFactory
     {
+
         public HeavyInfantryFactory() : base("HeavyInfantry")
         {
 
@@ -12,6 +13,11 @@ namespace StackMortalKombat.Factories
         public override AbstractUnit CreateUnit()
         {
             return new HeavyInfantry(2, "HeavyInfantry", 2, 2, 2, 2, 2 + 2 + 2);
+        }
+
+        public override int GetCost()
+        {
+            return 2 + 2 + 2;
         }
     }
 }
