@@ -16,6 +16,7 @@ namespace StackMortalKombat.Battle
             _view = view;
             _view.StartMenu();
             _view.GameLoop();
+            _view.PrintFinishBattleInfo();
         }
 
     }

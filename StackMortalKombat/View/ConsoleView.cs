@@ -15,7 +15,7 @@ internal class ConsoleView : AbstractView
 
     }
 
-    public override void BattleMenu()
+    protected override void BattleMenu()
     {
         AnsiConsole.Clear();
         PrintBattleInfo();
@@ -76,7 +76,7 @@ internal class ConsoleView : AbstractView
         PrintIntro();
 
         tempValue = (int)AnsiConsole.Ask<uint>("Enter Army [underline yellow]Value[/]:");
-        army1 = FillArmy(1, tempValue);        
+        army1 = FillArmy(1, tempValue);
         army2 = FillArmy(2, tempValue);
         strategy = ChooseStrategy();
         _battleHistory._battleContext.army1 = army1;
@@ -89,23 +89,27 @@ internal class ConsoleView : AbstractView
         {
             List<AbstractUnit> list = new List<AbstractUnit>();
 
-            AnsiConsole.Write(new FigletText($"Army #{armyNumber}")
-                        .Justify(Justify.Center)
-                        .Color(Color.Orange1));
 
             while (value >= 4)
             {
+                AnsiConsole.Clear();
+                AnsiConsole.Write(new FigletText($"Army #{armyNumber}")
+                            .Justify(Justify.Center)
+                            .Color(Color.Orange1));
                 Thread.Sleep(100);
-
+                AnsiConsole.Markup($"Value : [underline orange1]{value}[/]\n");
                 ChooseUnit();
 
             }
+            Console.Clear();
+            PrintIntro();
             return list;
-            
+
             void ChooseUnit()
             {
                 AbstractUnitFactory factory;
                 int unitValue;
+
 
                 string unitToAdd = AnsiConsole.Prompt(new SelectionPrompt<string>()
                     .Title("Units To Add:").HighlightStyle(Color.Purple_1)
@@ -133,11 +137,12 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
-                    
+
                     case "Heavy Infantry":
                         factory = new HeavyInfantryFactory();
                         unitValue = factory.GetCost();
@@ -148,11 +153,12 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
-                    
+
                     case "Knight":
                         factory = new KnightFactory();
                         unitValue = factory.GetCost();
@@ -163,7 +169,8 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
@@ -178,7 +185,8 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
@@ -193,7 +201,8 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
@@ -208,7 +217,8 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
@@ -223,7 +233,8 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            Thread.Sleep(100);
                             ChooseUnit();
                         }
                         break;
@@ -284,7 +295,7 @@ internal class ConsoleView : AbstractView
         );
     }
 
-    private void PrintBattleInfo()
+    public void PrintBattleInfo()
     {
         Func<IStrategy, string> StrategyName = strategy => strategy.GetType().Name;
 
@@ -295,6 +306,18 @@ internal class ConsoleView : AbstractView
         AnsiConsole.WriteLine();
 
         AnsiConsole.MarkupLine($"Strategy : [underline Aquamarine1_1]{StrategyName(_battleHistory._battleContext.Strategy)}[/]");
+    }
+
+    public override void PrintFinishBattleInfo()
+    {
+        Func<IStrategy, string> StrategyName = strategy => strategy.GetType().Name;
+        AnsiConsole.WriteLine();
+        PrintArmy(_battleHistory._battleContext.army1);
+        AnsiConsole.Write(" ||| ");
+        PrintArmy(_battleHistory._battleContext.army2);
+        AnsiConsole.WriteLine();
+        AnsiConsole.WriteLine();
+
     }
 
     private void PrintArmy(List<AbstractUnit> list)

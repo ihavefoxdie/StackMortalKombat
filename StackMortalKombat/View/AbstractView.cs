@@ -11,8 +11,9 @@ namespace StackMortalKombat.Interfaces
 
         protected abstract void StrategyMenu();
 
-        public abstract void BattleMenu();
+        protected abstract void BattleMenu();
 
+        public abstract void PrintFinishBattleInfo();
 
         public void GameLoop()
         {
