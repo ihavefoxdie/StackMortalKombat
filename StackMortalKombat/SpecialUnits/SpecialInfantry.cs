@@ -37,7 +37,7 @@ public class SpecialInfantry : AbstractUnit, ISpecialAbility
         }
         if(!check)
         {
-            unit.AppliedBuffs.Add(new Helmet());
+            unit.AddBuff(new Helmet());
             return;
         }
 
@@ -52,7 +52,7 @@ public class SpecialInfantry : AbstractUnit, ISpecialAbility
         }
         if (!check)
         {
-            unit.AppliedBuffs.Add(new Horse());
+            unit.AddBuff(new Horse());
             return;
         }
 
@@ -67,7 +67,7 @@ public class SpecialInfantry : AbstractUnit, ISpecialAbility
         }
         if (!check)
         {
-            unit.AppliedBuffs.Add(new Shield());
+            unit.AddBuff(new Shield());
             return;
         }
     }

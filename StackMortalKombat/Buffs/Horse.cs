@@ -7,9 +7,4 @@ public class Horse : AbstractBuff
         Name = "Horse";
         Attack = 1;
     }
-
-    public override void SetBuff(BuffedUnit unit)
-    {
-        unit.AppliedBuffs.Add(this);
-    }
 }

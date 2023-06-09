@@ -1,6 +1,4 @@
-﻿using StackMortalKombat.Units;
-
-namespace StackMortalKombat.Buffs;
+﻿namespace StackMortalKombat.Buffs;
 
 public abstract class AbstractBuff
 {
@@ -8,5 +6,12 @@ public abstract class AbstractBuff
     public int Attack { get; set; } = 0;
     public int Defense { get; set; } = 0;
 
-    public abstract void SetBuff(BuffedUnit unit);
+    public virtual void BuffRemovalChance()
+    {
+        if (new Random().Next(0, 100) >= 90)
+        {
+            this.Defense = 0;
+            this.Attack = 0;
+        }
+    }
 }

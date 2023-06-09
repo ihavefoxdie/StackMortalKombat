@@ -7,9 +7,4 @@ public class Shield : AbstractBuff
         Name = "Shield";
         Defense = 2;
     }
-
-    public override void SetBuff(BuffedUnit unit)
-    {
-        unit.AppliedBuffs.Add(this);
-    }
 }
