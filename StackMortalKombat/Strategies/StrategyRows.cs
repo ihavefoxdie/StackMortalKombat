@@ -157,7 +157,7 @@ public class StrategyRows : IStrategy
             enemyRange--;
         }
 
-        for (int i = referenceIndex; i >= 0 || enemyRange > 0; i += 3, enemyRange--)
+        for (int i = referenceIndex; i >= 0 && enemyRange > 0; i += 3, enemyRange--)
         {
             enemyReach.Add(army2[i]);
         }
