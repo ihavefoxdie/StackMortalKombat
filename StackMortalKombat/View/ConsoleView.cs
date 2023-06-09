@@ -33,7 +33,6 @@ internal class ConsoleView : AbstractView
         }));
 
 
-
         switch (command)
         {
             case "Undo":
@@ -64,9 +63,6 @@ internal class ConsoleView : AbstractView
                 Debug.Write("Unfamiliar Command");
                 break;
         }
-
-
-
     }
 
     public override void StartMenu()
@@ -80,7 +76,7 @@ internal class ConsoleView : AbstractView
         PrintIntro();
 
         tempValue = (int)AnsiConsole.Ask<uint>("Enter Army [underline yellow]Value[/]:");
-        army1 = FillArmy(1, tempValue);
+        army1 = FillArmy(1, tempValue);        
         army2 = FillArmy(2, tempValue);
         strategy = ChooseStrategy();
         _battleHistory._battleContext.army1 = army1;
@@ -91,27 +87,29 @@ internal class ConsoleView : AbstractView
 
         List<AbstractUnit> FillArmy(int armyNumber, int value)
         {
-
             List<AbstractUnit> list = new List<AbstractUnit>();
+
+            AnsiConsole.Write(new FigletText($"Army #{armyNumber}")
+                        .Justify(Justify.Center)
+                        .Color(Color.Orange1));
 
             while (value >= 4)
             {
-                AnsiConsole.Write(new FigletText($"Army #{armyNumber}")
-                            .Justify(Justify.Center)
-                            .Color(Color.Orange1));
                 Thread.Sleep(100);
 
                 ChooseUnit();
 
             }
-                return list;
-                void ChooseUnit()
-                {
-                    AbstractUnitFactory factory;
+            return list;
+            
+            void ChooseUnit()
+            {
+                AbstractUnitFactory factory;
+                int unitValue;
 
-                    string unitToAdd = AnsiConsole.Prompt(new SelectionPrompt<string>()
-                        .Title("Units To Add:").HighlightStyle(Color.Purple_1)
-                        .PageSize(10).AddChoices(new[] {
+                string unitToAdd = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                    .Title("Units To Add:").HighlightStyle(Color.Purple_1)
+                    .PageSize(10).AddChoices(new[] {
                     "Infantry",
                     "Heavy Infantry",
                     "Knight",
@@ -120,48 +118,158 @@ internal class ConsoleView : AbstractView
                     "Archer",
                     "Healer",
                     "Witcher",
-                        }));
+                    }));
 
 
-                    switch (unitToAdd)
+                switch (unitToAdd)
+                {
+                    case "Infantry":
+                        factory = new InfantryFactory();
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+                    
+                    case "Heavy Infantry":
+                        factory = new HeavyInfantryFactory();
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+                    
+                    case "Knight":
+                        factory = new KnightFactory();
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+
+                    case "WalkTheCity":
+                        factory = new WalkTheCityFactory();
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+
+                    case "Archer":
+                        factory = new ArcherFactory(chooseUsualUnit());
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+
+                    case "Healer":
+                        factory = new HealerFactory(chooseUsualUnit());
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+
+                    case "Witcher":
+                        factory = new WitcherFactory(chooseUsualUnit());
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            ChooseUnit();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                AbstractUnit chooseUsualUnit()
+                {
+
+                    AbstractUnitFactory usualFactory = new InfantryFactory();
+                    AnsiConsole.WriteLine();
+                    string usualUnitToAdd = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                    .Title("Units To Add:").HighlightStyle(Color.Purple_1)
+                    .PageSize(10).AddChoices(new[] {
+
+                    "Infantry",
+                    "Heavy Infantry",
+                    "Knight",
+
+                    }));
+
+                    switch (usualUnitToAdd)
                     {
+
                         case "Infantry":
-                            factory = new InfantryFactory();
-                            int unitValue = factory.GetCost();
-                            if (tempValue - unitValue >= 0)
-                            {
-                                list.Add(factory.CreateUnit());
-                                tempValue -= unitValue;
-                            }
-                            else
-                            {
-                                AnsiConsole.Console.Markup($"[red]You can't afford it[/] {tempValue} - {unitValue}");
-                                ChooseUnit();
-                            }
+                            usualFactory = new InfantryFactory();
+                            break;
+
+                        case "Heavy Infantry":
+                            usualFactory = new HeavyInfantryFactory();
+                            break;
+
+                        case "Knight":
+                            usualFactory = new KnightFactory();
                             break;
 
 
                         default:
                             break;
                     }
+
+                    return usualFactory.CreateUnit();
                 }
 
-            //while (value > 0)
-            //{
-            //    var newFactory = AnsiConsole.Prompt(new SelectionPrompt<AbstractUnitFactory>()
-            //    .PageSize(3)
-            //    .AddChoices(new AbstractUnitFactory[] { new InfantryFactory(), new HeavyInfantryFactory(), new KnightFactory() })
-            //    .UseConverter(UnitName)
-            //    );
-
-
-
-            //    list.Add(newFactory.CreateUnit());
-            //    Thread.Sleep(100);
-
-            //    //TODO Value is static!!!
-            //    value -= (int)list.Last().Cost;
-            //}
+            }
         }
     }
 
@@ -174,7 +282,6 @@ internal class ConsoleView : AbstractView
         .AddChoices(new IStrategy[] { new StrategyHorizontally(), new StrategyRows(), new StrategyVertically() })
         .UseConverter(StrategyName)
         );
-
     }
 
     private void PrintBattleInfo()
