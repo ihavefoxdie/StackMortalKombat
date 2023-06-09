@@ -25,6 +25,11 @@ public class HeavyInfantry : AbstractUnit, IHealable, IClone<AbstractUnit>
             Health += (int)value;
     }
 
+    public override HeavyInfantry ReturnCopy()
+    {
+        return new HeavyInfantry(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
+    }
+
     public override void TakeTurn(AbstractUnit enemy)
     {
         base.TakeTurn(enemy);

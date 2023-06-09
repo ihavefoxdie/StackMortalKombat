@@ -28,4 +28,9 @@ internal class Infantry : AbstractUnit, IHealable, IClone<AbstractUnit>
     {
         base.TakeTurn(enemy);
     }
+
+    public override Infantry ReturnCopy()
+    {
+        return new Infantry(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
+    }
 }

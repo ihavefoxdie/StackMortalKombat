@@ -4,12 +4,22 @@ public abstract class AbstractUnit
 {
     public uint Id { get; }
     public string Name { get; }
-    public int Health { get; set; } 
+    public int Health { get; set; }
     public int MaxHP { get; }
     public uint Damage { get; }
     public uint Defense { get; }
     public uint Cost { get; }
 
+    public AbstractUnit(AbstractUnit unit)
+    {
+        Id = unit.Id;
+        Name = unit.Name;
+        Health = unit.Health;
+        MaxHP = unit.MaxHP;
+        Damage = unit.Damage;
+        Defense = unit.Defense;
+        Cost = unit.Cost;
+    }
 
     public AbstractUnit(uint id, string name, int health, int maxHP, uint damage, uint defense, uint cost)
     {
@@ -33,4 +43,6 @@ public abstract class AbstractUnit
     }
 
     public bool IsAlive { get { return (Health > 0); } }
+
+    public abstract AbstractUnit ReturnCopy();
 }

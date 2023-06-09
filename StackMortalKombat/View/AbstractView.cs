@@ -24,7 +24,7 @@ namespace StackMortalKombat.Interfaces
                 else
                     number = 2;
 
-                AnsiConsole.Write(new FigletText($"Armie#{number} wins!!!")
+                AnsiConsole.Write(new FigletText($"Army#{number} wins!!!")
                     .Centered()
                     .Color(Color.Yellow3)
                     );

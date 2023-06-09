@@ -8,6 +8,11 @@ public class BuffedHeavyInfantry : Buff
     {
     }
 
+    public override BuffedHeavyInfantry ReturnCopy()
+    {
+        return new BuffedHeavyInfantry(_unit.ReturnCopy());
+    }
+
     public override void TakeDamage(uint damageTaken)
     {
         if ((int)damageTaken - 2 < 0)

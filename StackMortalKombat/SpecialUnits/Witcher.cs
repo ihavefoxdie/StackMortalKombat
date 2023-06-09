@@ -7,10 +7,13 @@ public class Witcher : AbstractUnit, ISpecialAbility
 {
     public Witcher(AbstractUnit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Witcher" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
     {
+        _unit = unit;
         SpecialAbilityCost = specialAbilityCost;
         SpecialAbilityStrength = specialAbilityStrength;
         SpecialAbilityRange = specialAbilityRange;
     }
+
+    private AbstractUnit _unit;
 
     public int SpecialAbilityRange { get; }
 
@@ -32,6 +35,11 @@ public class Witcher : AbstractUnit, ISpecialAbility
         {
             unitsFriendly.Add(((IClone<AbstractUnit>)unitsFriendly[clonables[new Random().Next(0, clonables.Count)]]).Clone());
         }
+    }
+
+    public override Witcher ReturnCopy()
+    {
+        return new Witcher(_unit.ReturnCopy(), SpecialAbilityRange, SpecialAbilityStrength, SpecialAbilityCost);
     }
 
     public override void TakeTurn(AbstractUnit enemy)

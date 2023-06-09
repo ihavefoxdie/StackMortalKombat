@@ -35,9 +35,22 @@ namespace StackMortalKombat.Battle
 
         public BattleContext(BattleContext previousBattleContext)
         {
-            //army1 = new List<AbstractUnit>(previousBattleContext.army1);
+            /*army1 = new List<AbstractUnit>(previousBattleContext.army1);
             army1 = previousBattleContext.army1.ToList();
-            army2 = new List<AbstractUnit>(previousBattleContext.army2);
+            army2 = new List<AbstractUnit>(previousBattleContext.army2);*/
+
+            army1 = new();
+            for (int i = 0; i < previousBattleContext.army1.Count; i++)
+            {
+                army1.Add(previousBattleContext.army1[i].ReturnCopy());
+            }
+
+            army2= new();
+            for (int i = 0; i < previousBattleContext.army2.Count; i++)
+            {
+                army2.Add(previousBattleContext.army2[i].ReturnCopy());
+            }
+
             Strategy = previousBattleContext.Strategy;
             Factory = previousBattleContext.Factory;
             TurnNumber = previousBattleContext.TurnNumber;

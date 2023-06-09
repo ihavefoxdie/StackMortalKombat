@@ -13,6 +13,11 @@ public class Knight : AbstractUnit, IClone<AbstractUnit>
         return new Knight(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
     }
 
+    public override Knight ReturnCopy()
+    {
+        return new Knight(this.Id, this.Name, this.Health, this.MaxHP, this.Damage, this.Defense, this.Cost);
+    }
+
     public override void TakeTurn(AbstractUnit enemy)
     {
         base.TakeTurn(enemy);

@@ -5,16 +5,15 @@ namespace StackMortalKombat.SpecialUnits;
 
 public class Archer : AbstractUnit, ISpecialAbility
 {
-    /*public Archer(AbstractUnit unit) : base(unit, 4, 2, "Archer", 2)
-    {
-    }*/
-
     public Archer(AbstractUnit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Archer" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
     {
+        _unit = unit;
         SpecialAbilityCost = specialAbilityCost;
         SpecialAbilityStrength = specialAbilityStrength;
         SpecialAbilityRange = specialAbilityRange;
     }
+
+    private AbstractUnit _unit;
 
     public int SpecialAbilityRange { get; }
 
@@ -27,6 +26,11 @@ public class Archer : AbstractUnit, ISpecialAbility
     public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies)
     {
         unitsEnemies[new Random().Next(0, unitsEnemies.Count)].Health -= SpecialAbilityStrength;
+    }
+
+    public override Archer ReturnCopy()
+    {
+        return new Archer(_unit.ReturnCopy(), SpecialAbilityRange, SpecialAbilityStrength, SpecialAbilityCost);
     }
 
     public override void TakeTurn(AbstractUnit enemy)

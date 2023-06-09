@@ -45,7 +45,8 @@ internal class ConsoleView : AbstractView
                 break;
 
             case "ChangeStrategy":
-                _battleHistory.SetCommand(new ChangeStrategyCommand(_battleHistory._battleContext));
+                
+                _battleHistory.SetCommand(new ChangeStrategyCommand(_battleHistory._battleContext, ChooseStrategy()));
                 _battleHistory.Execute();
                 break;
 

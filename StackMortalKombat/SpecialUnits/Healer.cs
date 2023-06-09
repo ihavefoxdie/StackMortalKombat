@@ -7,10 +7,13 @@ public class Healer : AbstractUnit, ISpecialAbility
 {
     public Healer(AbstractUnit unit, int specialAbilityRange, int specialAbilityStrength, uint specialAbilityCost) : base(unit.Id, "Healer" + unit.Name, unit.Health, unit.MaxHP, unit.Damage, unit.Defense, unit.Cost + specialAbilityCost)
     {
+        _unit = unit;
         SpecialAbilityCost = specialAbilityCost;
         SpecialAbilityStrength = specialAbilityStrength;
         SpecialAbilityRange = specialAbilityRange;
     }
+
+    private AbstractUnit _unit;
 
     public int SpecialAbilityRange { get; }
 
@@ -27,6 +30,11 @@ public class Healer : AbstractUnit, ISpecialAbility
             if (unit is IHealable healable)
                 healable.ReceiveHealing((uint)SpecialAbilityStrength);
         }
+    }
+
+    public override Archer ReturnCopy()
+    {
+        return new Archer(_unit.ReturnCopy(), SpecialAbilityRange, SpecialAbilityStrength, SpecialAbilityCost);
     }
 
     public override void TakeTurn(AbstractUnit enemy)

@@ -9,6 +9,11 @@ public class WalkTheCityAdapter : AbstractUnit
         _walkTheCity = adapteeUnit;
     }
 
+    public override WalkTheCityAdapter ReturnCopy()
+    {
+        return new WalkTheCityAdapter(_walkTheCity);
+    }
+
     // Отличие в получаемом дамаге (cтена слегка режет получаемый урон)
     public override void TakeDamage(uint damageTaken)
     {
