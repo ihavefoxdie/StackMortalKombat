@@ -34,7 +34,9 @@ public abstract class AbstractUnit
 
     public virtual void TakeDamage(uint damageTaken)
     {
-        Health -= (int)damageTaken;
+        int damage = (int)damageTaken - (int)Defense;
+        if (damage > 0)
+            Health -= damage;
     }
 
     public virtual void TakeTurn(AbstractUnit enemy)
