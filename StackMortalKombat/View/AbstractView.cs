@@ -21,9 +21,9 @@ namespace StackMortalKombat.Interfaces
             {
                 int number = 0;
                 if (_battleHistory._battleContext.army1.Count == 0)
-                    number = 1;
-                else
                     number = 2;
+                else
+                    number = 1;
 
                 AnsiConsole.Write(new FigletText($"Army#{number} wins!!!")
                     .Centered()
