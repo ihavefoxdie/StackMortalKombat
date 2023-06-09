@@ -39,7 +39,7 @@ public class StrategyVertically : IStrategy
                 {
                     return;
                 }
-                army2.ElementAt(i).TakeTurn(army1.Last(), GetArmyCost(army1));
+                army2.ElementAt(i).TakeTurn(army1[i], GetArmyCost(army1));
             }
         }
     }

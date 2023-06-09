@@ -34,7 +34,9 @@ public class StrategyRows : IStrategy
             if (army1.Count - i < 0 || army2.Count - i < 0)
                 break;
             if (army2.ElementAt(army2.Count - i).IsAlive)
-                army2.ElementAt(army2.Count - i).TakeTurn(army1.Last(), GetArmyCost(army1));
+            {
+                army2.ElementAt(army2.Count - i).TakeTurn(army1[army1.Count - i], GetArmyCost(army1));
+            }
         }
     }
 
