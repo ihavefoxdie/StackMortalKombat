@@ -34,7 +34,7 @@ public class StrategyRows : IStrategy
             if (army1.Count - i < 0 || army2.Count - i < 0)
                 break;
             if (army2.ElementAt(army2.Count - i).IsAlive)
-                army1.ElementAt(army2.Count - i).TakeDamage(army2.ElementAt(army1.Count - i).Damage);
+                army2.ElementAt(army2.Count - i).TakeTurn(army1.Last(), GetArmyCost(army1));
         }
     }
 
@@ -62,9 +62,9 @@ public class StrategyRows : IStrategy
 
     private void MovingUp(int index, List<AbstractUnit> friendlyReach, List<AbstractUnit> army1)
     {
-        if (army1[index + 1] != null)
+        if (army1.Count > index + 1)
             friendlyReach.Add(army1[index + 1]);
-        if (army1[index + 2] != null)
+        if (army1.Count > index + 2)
             friendlyReach.Add(army1[index + 2]);
     }
 
@@ -72,7 +72,7 @@ public class StrategyRows : IStrategy
     {
         if (index - 1 >= 0)
             friendlyReach.Add(army1[index - 1]);
-        if (army1[index + 1] != null)
+        if (army1.Count > index + 1)
             friendlyReach.Add(army1[index + 1]);
     }
 
@@ -162,13 +162,13 @@ public class StrategyRows : IStrategy
         while (true)
         {
             n += 3;
-            if (army1[n] == null)
+            if (army1.Count >= n)
                 break;
             referenceIndex += 3;
             enemyRange--;
         }
 
-        for (int i = referenceIndex; i >= 0 && enemyRange > 0; i += 3, enemyRange--)
+        for (int i = referenceIndex; i >= 0 && enemyRange > 0 && i < army2.Count; i -= 3, enemyRange--)
         {
             enemyReach.Add(army2[i]);
         }

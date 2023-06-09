@@ -41,9 +41,12 @@ public abstract class AbstractUnit
 
     public virtual void TakeTurn(AbstractUnit enemy, uint armyCost)
     {
-        decimal damage = (((int)armyCost - (int)enemy.Defense) * (int)Damage) / 100;
-        if (damage > 0)
-            enemy.TakeDamage(Convert.ToUInt32(Math.Round(damage, MidpointRounding.AwayFromZero)));
+        decimal damage = (((decimal)armyCost - (decimal)enemy.Defense) * (decimal)Damage) / 100;
+        damage = Math.Round(damage, MidpointRounding.AwayFromZero);
+        uint roundedDamage = Convert.ToUInt32(damage);
+        if (roundedDamage == 0)
+            roundedDamage = 1;
+        enemy.TakeDamage(roundedDamage);
     }
 
     public bool IsAlive { get { return (Health > 0); } }

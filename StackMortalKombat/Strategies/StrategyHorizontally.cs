@@ -26,7 +26,7 @@ public class StrategyHorizontally : IStrategy
         {
             army1.Last().TakeTurn(army2.Last(), GetArmyCost(army2));
             if (army2.Last().IsAlive)
-                army1.Last().TakeDamage(army2.Last().Damage);
+                army2.Last().TakeTurn(army1.Last(), GetArmyCost(army1));
         }
     }
 
@@ -60,8 +60,8 @@ public class StrategyHorizontally : IStrategy
                 break;
         }
 
-        int enemyRange = range + (index - army1.Count - 1);
-        for (int i = army2.Count - 1; i >= 0 && enemyRange > 0; i++, enemyRange--)
+        int enemyRange = range + (index - (army1.Count - 1));
+        for (int i = army2.Count - 1; i >= 0 && enemyRange > 0 && i < army2.Count; i--, enemyRange--)
         {
             enemyReach.Add(army2[i]);
         }

@@ -39,7 +39,7 @@ public class StrategyVertically : IStrategy
                 {
                     return;
                 }
-                army1.ElementAt(i).TakeDamage(army2.ElementAt(i).Damage);
+                army2.ElementAt(i).TakeTurn(army1.Last(), GetArmyCost(army1));
             }
         }
     }
@@ -67,14 +67,14 @@ public class StrategyVertically : IStrategy
                 break;
         }
 
-        for (int i = index - 1, travelled = range - 1; i >= 0; i++, travelled--)
+        for (int i = index - 1, travelled = range - 1; i >= 0; i--, travelled--)
         {
             friendlyReach.Add(army1[i]);
             if (travelled == 0)
                 break;
         }
 
-        if (army2[index] != null)
+        if (army2.Count > index)
             enemyReach.Add(army2[index]);
     }
 }

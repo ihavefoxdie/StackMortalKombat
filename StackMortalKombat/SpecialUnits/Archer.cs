@@ -25,7 +25,7 @@ public class Archer : AbstractUnit, ISpecialAbility
 
     public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies)
     {
-        unitsEnemies[new Random().Next(0, unitsEnemies.Count)].Health -= SpecialAbilityStrength;
+        unitsEnemies[new Random().Next(0, unitsEnemies.Count - 1)].Health -= SpecialAbilityStrength;
     }
 
     public override Archer ReturnCopy()
