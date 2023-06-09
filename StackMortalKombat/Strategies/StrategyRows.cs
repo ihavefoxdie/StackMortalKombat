@@ -91,7 +91,7 @@ public class StrategyRows : IStrategy
         if (size < 3)
             size += 3;
 
-        switch (army1.Count % 3)
+        switch (size % 3)
         {
             case 0:
                 {
