@@ -50,7 +50,7 @@ public class StrategyHorizontally : IStrategy
         }
 
         int enemyRange = range + (index - army1.Count - 1);
-        for (int i = army2.Count - 1; i >= 0 || enemyRange > 0; i++, enemyRange--)
+        for (int i = army2.Count - 1; i >= 0 && enemyRange > 0; i++, enemyRange--)
         {
             enemyReach.Add(army2[i]);
         }
