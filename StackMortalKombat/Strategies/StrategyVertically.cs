@@ -26,7 +26,7 @@ public class StrategyVertically : IStrategy
         {
             if (i >= army2.Count)
             {
-                return;
+                break;
             }
             army1.ElementAt(i).TakeTurn(army2.ElementAt(i), GetArmyCost(army2));
         }
@@ -37,7 +37,7 @@ public class StrategyVertically : IStrategy
             {
                 if (i >= army1.Count)
                 {
-                    return;
+                    break;
                 }
                 army2.ElementAt(i).TakeTurn(army1[i], GetArmyCost(army1));
             }
