@@ -18,15 +18,15 @@ internal class NextTurnCommand : AbstractCommand
             _battleContext.Strategy.MakeTurn(_battleContext.army1, _battleContext.army2);
             _battleContext.Strategy.UseSpecialAbility(_battleContext.army1, _battleContext.army2);
             _battleContext.ClearArmies();
-            _battleContext.TurnNumber++;
         }
-
         else
         {
             _battleContext.Strategy.MakeTurn(_battleContext.army2, _battleContext.army1);
             _battleContext.Strategy.UseSpecialAbility(_battleContext.army2, _battleContext.army1);
             _battleContext.ClearArmies();
         }
+
+        _battleContext.TurnNumber++;
     }
 
     public override void Undo()
