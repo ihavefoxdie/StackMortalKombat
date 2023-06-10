@@ -1,5 +1,6 @@
 ﻿using StackMortalKombat.Interfaces;
 using StackMortalKombat.Units;
+using System;
 
 namespace StackMortalKombat.SpecialUnits;
 
@@ -25,15 +26,19 @@ public class Witcher : AbstractUnit, ISpecialAbility
 
     public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies)
     {
-        List<int> clonables = new();
-        for (int i = 0; i < unitsFriendly.Count; i++)
+        Random random = new();
+        if (random.Next(0,100) > -1)
         {
-            if (unitsFriendly[i] is IClone<AbstractUnit>)
-                clonables.Add(i);
-        }
-        if (clonables.Count > 0)
-        {
-            unitsFriendly.Add(((IClone<AbstractUnit>)unitsFriendly[clonables[new Random().Next(0, clonables.Count - 1)]]).Clone());
+            List<int> clonables = new();
+            for (int i = 0; i < unitsFriendly.Count; i++)
+            {
+                if (unitsFriendly[i] is IClone<AbstractUnit>)
+                    clonables.Add(i);
+            }
+            if (clonables.Count > 0)
+            {
+                unitsFriendly.Add(((IClone<AbstractUnit>)unitsFriendly[clonables[new Random().Next(0, clonables.Count - 1)]]).Clone());
+            }
         }
     }
 

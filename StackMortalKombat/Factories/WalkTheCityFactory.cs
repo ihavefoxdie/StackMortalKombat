@@ -8,7 +8,7 @@ public class WalkTheCityFactory : AbstractUnitFactory
 
     public WalkTheCityFactory() : base("WalkTheCity")
     {
-        _city = new(40, 10, 10 + 40);
+        _city = new(10, 0, 10);
     }
 
     public override AbstractUnit CreateUnit()
@@ -18,6 +18,6 @@ public class WalkTheCityFactory : AbstractUnitFactory
 
     public override int GetCost()
     {
-        return 10 + 40;
+        return 10;
     }
 }

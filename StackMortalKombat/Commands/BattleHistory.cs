@@ -1,4 +1,5 @@
 ﻿using StackMortalKombat.Battle;
+using StackMortalKombat.Units;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -25,7 +26,7 @@ namespace StackMortalKombat.Commands
             {
                 _command.Execute();
                 undoCommands.Push(_command);
-                if (_battleContext.army1.Count == 0 || _battleContext.army2.Count == 0)
+                if ((_battleContext.army1.Count == 0 || _battleContext.army2.Count == 0) || (_battleContext.army1.All(p1 => p1 is WalkTheCityAdapter) && _battleContext.army2.All(p2 => p2 is WalkTheCityAdapter)))
                     isGameEnded = true;
             }
             else
