@@ -5,19 +5,23 @@ namespace StackMortalKombat.Strategies;
 
 public class StrategyVertically : IStrategy
 {
+    private uint _cost = 0;
+
     public StrategyVertically()
     {
     }
 
     private uint GetArmyCost(List<AbstractUnit> army)
     {
-        uint cost = 0;
-        foreach (AbstractUnit unit in army)
+        if (_cost == 0)
         {
-            cost += unit.Cost;
+            foreach (AbstractUnit unit in army)
+            {
+                _cost += unit.Cost;
+            }
+            return _cost;
         }
-
-        return cost;
+        return _cost;
     }
 
     public void MakeTurn(List<AbstractUnit> army1, List<AbstractUnit> army2)
