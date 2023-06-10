@@ -61,7 +61,7 @@ public class StrategyHorizontally : IStrategy
                 break;
         }
 
-        for (int i = index - 1, travelled = range - 1; i >= 0; i++, travelled--)
+        for (int i = index - 1, travelled = range - 1; i >= 0; i--, travelled--)
         {
             friendlyReach.Add(army1[i]);
             if(travelled == 0)
