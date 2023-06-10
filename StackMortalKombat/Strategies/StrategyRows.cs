@@ -49,7 +49,15 @@ public class StrategyRows : IStrategy
                 List<AbstractUnit> friendlyReach = new();
                 List<AbstractUnit> enemyReach = new();
                 ScanForReach(i, special.SpecialAbilityRange, friendlyReach, enemyReach, army1, army2);
+                int size = friendlyReach.Count;
                 special.CastSpecialAbility(friendlyReach, enemyReach);
+                if (size < friendlyReach.Count)
+                {
+                    for (int j = size; j < friendlyReach.Count; j++)
+                    {
+                        army1.Add(friendlyReach[j]);
+                    }
+                }
             }
         }
     }

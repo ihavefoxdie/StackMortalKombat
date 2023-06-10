@@ -33,7 +33,7 @@ public class Witcher : AbstractUnit, ISpecialAbility
         }
         if (clonables.Count > 0)
         {
-            unitsFriendly.Add(((IClone<AbstractUnit>)unitsFriendly[clonables[new Random().Next(0, clonables.Count)]]).Clone());
+            unitsFriendly.Add(((IClone<AbstractUnit>)unitsFriendly[clonables[new Random().Next(0, clonables.Count - 1)]]).Clone());
         }
     }
 
