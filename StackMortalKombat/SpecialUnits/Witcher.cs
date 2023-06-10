@@ -27,7 +27,7 @@ public class Witcher : AbstractUnit, ISpecialAbility
     public void CastSpecialAbility(List<AbstractUnit> unitsFriendly, List<AbstractUnit> unitsEnemies)
     {
         Random random = new();
-        if (random.Next(0,100) > -1)
+        if (random.Next(0,100) > 70)
         {
             List<int> clonables = new();
             for (int i = 0; i < unitsFriendly.Count; i++)

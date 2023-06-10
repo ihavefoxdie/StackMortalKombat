@@ -330,7 +330,7 @@ internal class ConsoleView : AbstractView
         AnsiConsole.WriteLine();
         PrintArmy(_battleHistory._battleContext.army1);
         AnsiConsole.Write(" ||| ");
-        PrintArmy(_battleHistory._battleContext.army2);
+        PrintArmy(_battleHistory._battleContext.army2, true);
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
 
