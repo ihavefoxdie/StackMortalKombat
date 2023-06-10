@@ -112,7 +112,7 @@ internal class ConsoleView : AbstractView
 
 
                 string unitToAdd = AnsiConsole.Prompt(new SelectionPrompt<string>()
-                    .Title("Units To Add:").HighlightStyle(Color.Purple_1)
+                    .Title("\nUnits To Add:").HighlightStyle(Color.Purple_1)
                     .PageSize(10).AddChoices(new[] {
                     "Infantry",
                     "Heavy Infantry",
@@ -137,7 +137,23 @@ internal class ConsoleView : AbstractView
                         }
                         else
                         {
-                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}\n");
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
+                            Thread.Sleep(100);
+                            ChooseUnit();
+                        }
+                        break;
+
+                    case "Special Infantry":
+                        factory = new SpecialInfantryFactory();
+                        unitValue = factory.GetCost();
+                        if (value - unitValue >= 0)
+                        {
+                            list.Add(factory.CreateUnit());
+                            value -= unitValue;
+                        }
+                        else
+                        {
+                            AnsiConsole.Console.Markup($"[red]You can't afford it[/] {value} - {unitValue}");
                             Thread.Sleep(100);
                             ChooseUnit();
                         }
@@ -301,11 +317,11 @@ internal class ConsoleView : AbstractView
 
         PrintArmy(_battleHistory._battleContext.army1);
         AnsiConsole.Write(" ||| ");
-        PrintArmy(_battleHistory._battleContext.army2);
+        PrintArmy(_battleHistory._battleContext.army2, true);
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
 
-        AnsiConsole.MarkupLine($"Strategy : [underline Aquamarine1_1]{StrategyName(_battleHistory._battleContext.Strategy)}[/]");
+        AnsiConsole.Markup($"Strategy : [underline Aquamarine1_1]{StrategyName(_battleHistory._battleContext.Strategy)}[/]");
     }
 
     public override void PrintFinishBattleInfo()
@@ -320,15 +336,27 @@ internal class ConsoleView : AbstractView
 
     }
 
-    private void PrintArmy(List<AbstractUnit> list)
+    private void PrintArmy(List<AbstractUnit> list, bool reverse = false)
     {
         AnsiConsole.Write("[");
-        foreach (var item in list)
+        if (reverse)
         {
-            AnsiConsole.Markup((item.Name + ":" + "[red]" + item.Health + "[/] "));
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                AnsiConsole.Markup((list[i].Name + ":" + "[red]" + list[i].Health + "[/] "));
+            }
+        }
+
+        else
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                AnsiConsole.Markup((list[i].Name + ":" + "[red]" + list[i].Health + "[/] "));
+            }
         }
         AnsiConsole.Write("]");
     }
+
 
     private void PrintIntro()
     {
