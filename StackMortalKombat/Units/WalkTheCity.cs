@@ -9,7 +9,7 @@ public class WalkTheCity
 
     public readonly double DamageAbsorber;
 
-    public WalkTheCity(int health, uint defence, uint cost, double damageAbsorb = 0.2)
+    public WalkTheCity(int health, uint defence, uint cost, double damageAbsorb = 0.8)
     {
         _defence = defence;
         _health = _currentHealth = health;

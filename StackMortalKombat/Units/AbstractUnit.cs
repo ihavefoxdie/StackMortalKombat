@@ -36,7 +36,15 @@ public abstract class AbstractUnit
     {
         int damage = (int)damageTaken;
         if (damage > 0)
+        {
+            if (this is WalkTheCityAdapter)
+            {
+                Health -= 1;
+                return;
+            }
+
             Health -= damage;
+        }
     }
 
     public virtual void TakeTurn(AbstractUnit enemy, uint armyCost)
@@ -44,8 +52,11 @@ public abstract class AbstractUnit
         decimal damage = (((decimal)armyCost - (decimal)enemy.Defense) * (decimal)Damage) / 100;
         damage = Math.Round(damage, MidpointRounding.AwayFromZero);
         uint roundedDamage = Convert.ToUInt32(damage);
-        if (roundedDamage == 0)
+        if (roundedDamage == 0 && this is not WalkTheCityAdapter)
             roundedDamage = 1;
+
+
+
         enemy.TakeDamage(roundedDamage);
     }
 

@@ -18,7 +18,7 @@ public class WalkTheCityAdapter : AbstractUnit
     public override void TakeDamage(uint damageTaken)
     {
         if (_walkTheCity.DamageAbsorber > 0 && _walkTheCity.DamageAbsorber < 1)
-            Health -= (int)(damageTaken * _walkTheCity.DamageAbsorber);
+            Health -= (int)(damageTaken * _walkTheCity.DamageAbsorber) + 1;
         else
             base.TakeDamage(damageTaken);
     }
