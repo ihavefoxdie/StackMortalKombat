@@ -23,6 +23,11 @@ namespace StackMortalKombat.Commands
             GetArmyByNumber().Add(_newUnit);
         }
 
+        public override void Redo()
+        {
+            
+        }
+
 
         public override void Undo()
         {

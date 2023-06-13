@@ -51,7 +51,7 @@ namespace StackMortalKombat.Commands
             if (redoCommands.Any())
             {
                 AbstractCommand command = redoCommands.Pop();
-                command.Execute();
+                command.Redo();
                 undoCommands.Push(command);
             }
 

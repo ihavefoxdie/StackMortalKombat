@@ -30,5 +30,10 @@ namespace StackMortalKombat.Commands
         {
 
         }
+
+        public override void Redo()
+        {
+
+        }
     }
 }

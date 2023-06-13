@@ -24,6 +24,11 @@ namespace StackMortalKombat.Commands
             _battleContext.Factory = _newfactory;
         }
 
+        public override void Redo()
+        {
+            _battleContext.Factory = _newfactory;
+        }
+
         public override void Undo()
         {
             _battleContext.Factory = _oldfactory;

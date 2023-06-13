@@ -8,19 +8,18 @@ namespace StackMortalKombat.Commands
         private IStrategy _newStrategy;
         private IStrategy _oldStrategy;
 
-        public ChangeStrategyCommand(BattleContext battleContext, IStrategy newStrategy = null) : base(battleContext)
+        public ChangeStrategyCommand(BattleContext battleContext, IStrategy newStrategy) : base(battleContext)
         {
             _newStrategy = newStrategy;
             _oldStrategy = battleContext.Strategy;
         }
 
-        public void SetStrategy(IStrategy newStrategy)
+        public override void Execute()
         {
-            _newStrategy = newStrategy;
+            _battleContext.Strategy = _newStrategy;
         }
 
-
-        public override void Execute()
+        public override void Redo()
         {
             _battleContext.Strategy = _newStrategy;
         }

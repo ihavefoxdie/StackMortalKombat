@@ -10,6 +10,9 @@ namespace StackMortalKombat.Commands
 
         public abstract void Undo();
 
+        public abstract void Redo();
+
+
         public AbstractCommand(BattleContext battleContext)
         {
             _battleContext = battleContext;

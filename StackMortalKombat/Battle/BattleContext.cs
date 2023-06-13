@@ -44,7 +44,7 @@ namespace StackMortalKombat.Battle
                 army1.Add(previousBattleContext.army1[i].ReturnCopy());
             }
 
-            army2= new();
+            army2 = new();
             for (int i = 0; i < previousBattleContext.army2.Count; i++)
             {
                 army2.Add(previousBattleContext.army2[i].ReturnCopy());
@@ -54,6 +54,8 @@ namespace StackMortalKombat.Battle
             Factory = previousBattleContext.Factory;
             TurnNumber = previousBattleContext.TurnNumber;
         }
+
+
 
         public void ClearArmies()
         {
@@ -76,30 +78,6 @@ namespace StackMortalKombat.Battle
                 }
             }
 
-        }
-
-        public void PrintArmies()
-        {
-            Console.Write("[ ");
-
-            for (int i = 0; i < army1.Count; i++)
-            {
-                Console.Write($"{army1.ElementAt(i).Name} ");
-
-            }
-
-            Console.Write("] ");
-
-            Console.Write("[ ");
-
-            for (int i = 0; i < army2.Count; i++)
-            {
-                Console.Write($"{army2.ElementAt(i).Name} ");
-
-            }
-
-            Console.Write("]");
-            Console.WriteLine();
         }
 
     }
