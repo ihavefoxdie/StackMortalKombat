@@ -20,6 +20,7 @@ internal class ConsoleView : AbstractView
         AnsiConsole.Clear();
         PrintBattleInfo();
         AnsiConsole.WriteLine("\n\n");
+        AbstractCommand abstractCommand;
 
         string command = AnsiConsole.Prompt(new SelectionPrompt<string>()
         .Title("Possibilities:").HighlightStyle(Color.Purple_1)
@@ -44,18 +45,20 @@ internal class ConsoleView : AbstractView
                 break;
 
             case "ChangeStrategy":
-
-                _battleHistory.SetCommand(new ChangeStrategyCommand(_battleHistory._battleContext, ChooseStrategy()));
+                abstractCommand = new ChangeStrategyCommand(_battleHistory._battleContext, ChooseStrategy());
+                _battleHistory.SetCommand(new LoggedCommand(abstractCommand, _battleHistory._battleContext));
                 _battleHistory.Execute();
                 break;
 
             case "NextTurn":
-                _battleHistory.SetCommand(new NextTurnCommand(_battleHistory._battleContext));
+                abstractCommand = new NextTurnCommand(_battleHistory._battleContext);
+                _battleHistory.SetCommand(new LoggedCommand(abstractCommand, _battleHistory._battleContext));
                 _battleHistory.Execute();
                 break;
 
             case "Finish":
-                _battleHistory.SetCommand(new ToFinishCommand(_battleHistory._battleContext, _battleHistory));
+                abstractCommand = new ToFinishCommand(_battleHistory._battleContext, _battleHistory);
+                _battleHistory.SetCommand(new LoggedCommand(abstractCommand, _battleHistory._battleContext));
                 _battleHistory.Execute();
                 break;
 

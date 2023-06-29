@@ -13,14 +13,16 @@ namespace StackMortalKombat.Commands
 
         public override void Execute()
         {
-            AbstractCommand abstractCommand = new NextTurnCommand(_battleContext);
-            _battleHistory.SetCommand(abstractCommand);
-            _battleHistory.Execute();
+            AbstractCommand abstractCommand;
+
+            //AbstractCommand abstractCommand = new NextTurnCommand(_battleContext);
+            //_battleHistory.SetCommand(new LoggedCommand(abstractCommand, _battleContext));
+            //_battleHistory.Execute();
 
             while (!_battleHistory.isGameEnded)
             {
                 abstractCommand = new NextTurnCommand(_battleContext);
-                _battleHistory.SetCommand(abstractCommand);
+                _battleHistory.SetCommand(new LoggedCommand(abstractCommand, _battleContext));
                 _battleHistory.Execute();
             }
             
